@@ -5,44 +5,51 @@ import { Apollo } from 'apollo-angular';
 import { UsersQuery, UserSummaryFragment } from '../../__generated__';
 import { Observable } from 'rxjs/Observable';
 
-const query = gql`
-  fragment UserSummary on User {
-    id, name
-  }
 
-  query Users {
-    allUsers(last: 100) {
-      ...UserSummary,
+const productQuery = gql`
+query {
+  products {
+    edges {
+      node {
+        id name seoTitle thumbnailUrl description price {
+          currency amount
+        }
+      }
     }
   }
+}
 `;
 
 @Component({
   selector: 'page-home',
-  template: `
-    <ion-header>
-      <ion-navbar>
-        <ion-title>Home</ion-title>
-      </ion-navbar>
-    </ion-header>
-    <ion-content>
-      <ion-list>
-        <button ion-item *ngFor="let user of users$ | async">
-          {{user.name}}
-        </button>
-      </ion-list>
-    </ion-content>
-  `,
+  templateUrl: 'home.html'
 })
 export class HomePage {
 
   users$: Observable<UserSummaryFragment[]>;
+  productList: any = [];
 
   constructor(
     public navCtrl: NavController,
     private apollo: Apollo,
-  ) {
-    this.users$ = this.apollo.query<UsersQuery>({ query })
-      .map(({ data }) => data.allUsers);
+    ) {
+    // this.users$ = this.apollo.query<UsersQuery>({ query })
+    // .map(({ data }) => data.allUsers);
+    let variableNew = null;
+    this.apollo.watchQuery<any>({ query: productQuery, variables: variableNew }).valueChanges.subscribe(data=>{
+      if (data) {
+        this.productList =  data.data.products.edges;
+        console.log(this.productList, 'product list');
+      }
+    });
+
+    setTimeout(()=>{
+      console.log(this.productList, 'product list');
+    }, 500);
   }
 }
+
+
+
+
+// things to be done

@@ -1,6 +1,8 @@
 {
   "name": "ionic-apollo-simple-app",
-  "app_id": "c4125a4f",
+  "integrations": {
+    "cordova": {}
+  },
   "type": "ionic-angular",
-  "integrations": {}
+  "id": "c4125a4f"
 }

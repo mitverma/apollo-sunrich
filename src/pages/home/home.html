@@ -1,0 +1,20 @@
+<ion-header>
+  <ion-navbar>
+    <button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title>Home</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding> 
+  <div *ngFor="let list of productList">
+    {{list.node.name}}
+    <p [innerHTML]="list.node.description"></p>
+    <img src="http://www.sunrichrice.com{{list.node.thumbnailUrl}}" alt="">
+    <span>Rps: {{list.node.price.amount}}</span>
+  </div>
+
+  <!-- <button ion-button secondary menuToggle>Toggle Menu</button>
+    <button ion-button (click)="registerPage()">Open page</button> -->
+  </ion-content>
