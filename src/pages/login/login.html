@@ -1,0 +1,45 @@
+<!--
+  Generated template for the LoginPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+	<ion-navbar>
+		<ion-title>{{viewRegisterSection? 'Register':'Login'}}</ion-title>
+	</ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+	<!-- register -->
+	<div class="register" *ngIf="viewRegisterSection">
+		<form #registerForm="ngForm">
+			<input type="email" name="registerEmail" [(ngModel)]="userRegisterDetail.email" placeholder="Email Id">
+			<input type="password" name="registerPassword" [(ngModel)]="userRegisterDetail.password" placeholder="Password">
+			<div class="text-center">
+				<button class="btn-yellow btn btn-round btn-half-width" (click)="register(registerForm);">Register</button>
+			</div>
+		</form>
+		<div class="">
+			<h6>Click here to <span (click)="toggleView('loginView')">Register</span></h6>
+		</div>
+	</div>
+	<!-- register -->
+	<!-- login -->
+	<div class="login" *ngIf="!viewRegisterSection">
+		<form #loginForm="ngForm">
+			<input type="email" name="loginEmail" [(ngModel)]="userLoginDetail.email" placeholder="Email Id">
+			<input type="password" name="loginPassword" [(ngModel)]="userLoginDetail.password" placeholder="Password">
+			<div class="text-center">
+				<button class="btn-yellow btn btn-round btn-half-width"  (click)="login(loginForm);">Login</button>
+			</div>
+		</form>
+		<div class="">
+			<h6>New User? <span (click)="toggleView('registerView')">Login</span></h6>
+		</div>
+	</div>
+	<!-- login end-->
+</ion-content>

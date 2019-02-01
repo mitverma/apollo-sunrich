@@ -1,16 +1,74 @@
 // http://ionicframework.com/docs/theming/
 
 
-// App Global Sass
-// --------------------------------------------------
-// Put style rules here that you want to apply globally. These
-// styles are for the entire app and not just one component.
-// Additionally, this file can be also used as an entry point
-// to import other Sass files to be included in the output CSS.
-//
-// Shared Sass variables, which can be used to adjust Ionic's
-// default Sass variables, belong in "theme/variables.scss".
-//
-// To declare rules for a specific mode, create a child rule
-// for the .md, .ios, or .wp mode classes. The mode class is
-// automatically applied to the <body> element in the app.
+/* App Global Sass
+ --------------------------------------------------
+ Put style rules here that you want to apply globally. These
+ styles are for the entire app and not just one component.
+ Additionally, this file can be also used as an entry point
+ to import other Sass files to be included in the output CSS.
+
+ Shared Sass variables, which can be used to adjust Ionic's
+ default Sass variables, belong in "theme/variables.scss".
+
+ To declare rules for a specific mode, create a child rule
+ for the .md, .ios, or .wp mode classes. The mode class is
+ automatically applied to the <body> element in the app.*/
+
+ /*colors*/
+ $color-button : #daaa2c;
+ $color-black: #000;
+ $color-white: #fff;
+ /*$color-brown: #a77c09;*/
+ $color-brown: #c18d00;
+ $color-greenblack: #292f28;
+ $color-darkgrey: gray;
+ /*colors end*/
+
+
+ /*classes*/
+ .btn-yellow {
+ 	padding: 12px 40px;
+ 	height: 40px;
+ 	background-color: $color-brown;
+ 	color: #fff;
+ 	box-shadow: 0px 3px 4px #7b7b7b;
+ 	&:hover:not(.disable-hover) {
+ 		background-color: $color-brown;
+ 		color: #fff;
+ 	}
+ }
+
+ .btn-round {
+ 	border-radius: 25px;
+ }
+ .btn-full {
+ 	width: 100%;
+ }
+ .btn-half-width {
+ 	width: 50%;
+ 	margin: 0 auto;
+ }
+
+ .text-center {
+ 	text-align: center;
+ }
+ /*classes end*/
+
+ ng-component {
+ 	/*background-image: linear-gradient(to right, #e0e0e1, #f2f2f4);*/
+ 	background-image: linear-gradient(to right, #e0e0e1, #f5f5f5);
+
+ 	/*header set to background transparent*/
+ 	.toolbar-background-md {
+ 		background-color: transparent;
+ 	}
+ 	/*header end	*/
+ 	/*header set to background transparent end*/
+
+ 	/*content background to transparent*/
+ 	.content-md {
+ 		background-color: transparent;
+ 	}
+ 	/*content background to transparent end*/
+ }

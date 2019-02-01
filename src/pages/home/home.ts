@@ -1,5 +1,5 @@
-import { Component } from '@angular/core';
-import { NavController } from 'ionic-angular';
+import { Component,ViewChild} from '@angular/core';
+import { NavController,Slides} from 'ionic-angular';
 import gql from 'graphql-tag';
 import { Apollo } from 'apollo-angular';
 import { UsersQuery, UserSummaryFragment } from '../../__generated__';
@@ -25,7 +25,7 @@ query {
   templateUrl: 'home.html'
 })
 export class HomePage {
-
+  @ViewChild(Slides) slides: Slides;
   users$: Observable<UserSummaryFragment[]>;
   productList: any = [];
 
@@ -42,10 +42,14 @@ export class HomePage {
         console.log(this.productList, 'product list');
       }
     });
+  }
 
-    setTimeout(()=>{
-      console.log(this.productList, 'product list');
-    }, 500);
+
+  previousSlide(){
+    this.slides.slidePrev();
+  }
+  nextSlide(){
+    this.slides.slideNext();
   }
 }
 

@@ -8,6 +8,21 @@
 </ion-header>
 
 <ion-content padding> 
+  <div class="sliders">
+    <ion-slides pager>
+      <ion-slide>
+        <h2>Slide 1</h2>
+      </ion-slide>
+      <ion-slide>
+        <h2>Slide 2</h2>
+      </ion-slide>
+      <ion-slide>
+        <h2>Slide 3</h2>
+      </ion-slide>
+    </ion-slides>
+    <div class="previous-slide" (click)="previousSlide();"></div>
+    <div class="next-slide" (click)="nextSlide();"></div>
+  </div>
   <div *ngFor="let list of productList">
     {{list.node.name}}
     <p [innerHTML]="list.node.description"></p>
