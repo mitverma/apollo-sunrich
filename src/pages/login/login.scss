@@ -8,4 +8,22 @@ page-login {
 		background-color: transparent;
 		box-shadow: 1px 2px 3px #c7c7c7;
 	}
+
+	.logo-section {
+		margin: 30px auto;
+		text-align: center;
+		img {
+			max-width: 250px;
+		}
+	}
+
+	.form-info {
+		h6 {
+			margin-top: 20px !important;
+			text-align: center;
+			span {
+				color: $color-brown;
+			}
+		}
+	}
 }

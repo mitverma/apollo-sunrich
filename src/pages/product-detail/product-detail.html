@@ -1,0 +1,40 @@
+<!--
+  Generated template for the ProductDetailPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+	<ion-navbar>
+		<ion-title>{{productDetailInfo ? productDetailInfo.name: 'Product Details'}}</ion-title>
+	</ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+	<div class="product-detail-container">
+		<div class="sliders">
+			<ion-slides pager>
+				<ion-slide *ngFor="let images of productDetailInfo.images.edges">
+					<img src="http://www.sunrichrice.com{{images.url}}" alt="" class="img-fluid">
+				</ion-slide>
+			</ion-slides>
+			<div class="previous-slide" (click)="previousSlide();"></div>
+			<div class="next-slide" (click)="nextSlide();"></div>
+		</div>
+		<div class="product-quantity">
+			
+		</div>
+		<div class="product-info">
+			<h2 class="product-name">{{productDetailInfo.name}}</h2>
+			<h6 class="product-price">{{productDetailInfo.price.localized}}</h6>
+			<p class="product-descp" [innerHTML]="productDetailInfo.description"></p>
+		</div>
+		<div class="button-group">
+			<button ion-button round>Add To Cart</button>
+			<button ion-button round>Buy Now</button>
+		</div>
+	</div>
+</ion-content>

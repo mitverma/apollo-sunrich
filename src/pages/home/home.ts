@@ -4,15 +4,23 @@ import gql from 'graphql-tag';
 import { Apollo } from 'apollo-angular';
 import { UsersQuery, UserSummaryFragment } from '../../__generated__';
 import { Observable } from 'rxjs/Observable';
+import { ProductDetailPage } from '../product-detail/product-detail';
 
 
 const productQuery = gql`
 query {
-  products {
-    edges {
+  products{
+    edges{
       node {
-        id name seoTitle thumbnailUrl description price {
-          currency amount
+        id name description thumbnailUrl url seoDescription price {
+          localized
+        }
+        images {
+          edges {
+            node {
+              alt id url sortOrder
+            }
+          }
         }
       }
     }
@@ -50,6 +58,10 @@ export class HomePage {
   }
   nextSlide(){
     this.slides.slideNext();
+  }
+
+  productDetail(productInfo){
+    this.navCtrl.push(ProductDetailPage, productInfo);
   }
 }
 
