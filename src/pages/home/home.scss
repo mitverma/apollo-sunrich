@@ -5,6 +5,14 @@ page-home {
 	.sliders {
 		height: 250px;
 		box-shadow: 0px 2px 4px #a5a5a5;
+		position: relative;
+		.product-slide {
+			height: calc(100% - 70px);
+			position: absolute;
+			top: 50%;
+			left: 50%;
+			transform: translate(-50%,-50%);
+		}
 	}
 	.featured-product {
 		padding: 0;
@@ -25,10 +33,10 @@ page-home {
 		position: relative;   
 		.product-img-holder {
 			position: absolute;
-			top: 25%;
+			top: 35%;
 			left: 50%;
-			-webkit-transform: translate(-50%,-25%);
-			transform: translate(-50%,-25%);
+			-webkit-transform: translate(-50%,-23%);
+			transform: translate(-50%,-35%);
 			img {
 				max-height: 100px;
 			}
@@ -50,6 +58,6 @@ page-home {
 	}
 }
 
-.opac-zero {
-	opacity: 0;
-}
+// .opac-zero {
+// 	opacity: 0;
+// }

@@ -10,14 +10,8 @@
 <ion-content padding> 
   <div class="sliders">
     <ion-slides pager>
-      <ion-slide>
-        <h2>Slide 1</h2>
-      </ion-slide>
-      <ion-slide>
-        <h2>Slide 2</h2>
-      </ion-slide>
-      <ion-slide>
-        <h2>Slide 3</h2>
+      <ion-slide *ngFor="let slideList of productList | slice:5:8">
+        <img src="http://www.sunrichrice.com{{slideList.node.thumbnailUrl}}" alt="" class="img-fluid product-slide">
       </ion-slide>
     </ion-slides>
     <div class="previous-slide" (click)="previousSlide();"></div>

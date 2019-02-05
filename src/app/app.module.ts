@@ -73,7 +73,7 @@ export class AppModule {
       link: httpLink.create({
         uri: "http://www.sunrichrice.com/graphql/",
         withCredentials: true,
-        method: 'GET'    
+        // method: 'GET'    
         // headers: new HttpHeaders({
           //   authorization: "Bearer " + token
           // })

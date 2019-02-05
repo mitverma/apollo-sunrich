@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
-
+import gql from 'graphql-tag';
+import { Apollo } from 'apollo-angular';
 /**
  * Generated class for the LoginPage page.
  *
@@ -17,7 +18,8 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
  	viewRegisterSection: any;
  	userRegisterDetail: any = {};
  	userLoginDetail: any = {};
- 	constructor(public navCtrl: NavController, public navParams: NavParams) {
+ 	loginMutation: any;
+ 	constructor(public navCtrl: NavController, public navParams: NavParams, public apollo: Apollo) {
  		this.userRegisterDetail = {
  			email: '',
  			password: ''
@@ -27,6 +29,19 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
  			email: '',
  			password: ''
  		}
+
+ 		// mutation for login
+ 		this.loginMutation = gql` 		
+ 		mutation {
+ 			tokenCreate(email: "amit.verma@oneinsure.com", password:"test1234"){
+ 				token, errors{message}
+ 				user {
+ 					id email
+ 				}
+ 			}
+ 		}
+ 		`;
+ 		// mutation for login end
  	}
 
  	ionViewDidLoad() {
@@ -41,4 +56,22 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
  		}
  	}
 
- }
+ 	login(formDetails){
+ 		console.log(formDetails, 'formDetais');
+ 		if (formDetails.valid) {
+ 			this.apollo.mutate({mutation:  gql` 		
+ 				mutation {
+ 					tokenCreate(email: this.userLoginDetail.email, password:this.userLoginDetail.password){
+ 						token, errors{message}
+ 						user {
+ 							id email
+ 						}
+ 					}
+ 				}
+ 				`, variables : {email: this.userLoginDetail.email, password: this.userLoginDetail.password} }).subscribe(data=>{
+ 					console.log(data, 'data');
+ 				})
+ 			}
+ 		}
+
+ 	}
