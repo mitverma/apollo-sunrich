@@ -60,8 +60,8 @@ import { Apollo } from 'apollo-angular';
  		console.log(formDetails, 'formDetais');
  		if (formDetails.valid) {
  			this.apollo.mutate({mutation:  gql` 		
- 				mutation {
- 					tokenCreate(email: this.userLoginDetail.email, password:this.userLoginDetail.password){
+ 				mutation tokenCreate($email: String!, $password: String!){
+ 					tokenCreate(email: $email, password: $password){
  						token, errors{message}
  						user {
  							id email
