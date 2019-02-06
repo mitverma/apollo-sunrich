@@ -74,4 +74,23 @@ import { Apollo } from 'apollo-angular';
  			}
  		}
 
+ 		register(formDetails){
+ 			if (formDetails) {
+ 				this.apollo.mutate({
+ 					mutation: gql`
+ 					mutation customerRegister($input: [Object]!){
+ 						customerRegister(input: $input){
+ 							user {
+ 								id email token
+ 							}
+ 							errors { message }
+ 						}
+ 					}
+ 					`,variables : {input : { email: this.userRegisterDetail.email, password: this.userRegisterDetail.password }}
+ 				}).subscribe(data=>{
+ 					console.log(data, 'data');
+ 				})
+ 			}
+ 		}
+
  	}
