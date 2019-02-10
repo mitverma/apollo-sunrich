@@ -15,6 +15,9 @@ page-product-detail {
 				transform: translate(-50%, -50%);
 			}
 		}
+		.swiper-pagination-bullet-active {
+			background: $color-brown;
+		}
 		.product-info {
 			padding: 16px;
 		}

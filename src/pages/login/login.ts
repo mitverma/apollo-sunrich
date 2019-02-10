@@ -1,13 +1,30 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, ToastController  } from 'ionic-angular';
 import gql from 'graphql-tag';
 import { Apollo } from 'apollo-angular';
+import { AuthUser } from '../../providers/entities/entities';
+import { DevicestorageProvider } from '../../providers/devicestorage/devicestorage';
+import { HomePage } from '../home/home';
 /**
  * Generated class for the LoginPage page.
  *
  * See https://ionicframework.com/docs/components/#navigation for more info on
  * Ionic pages and navigation.
  */
+ const request = gql`
+ mutation customerRegister($email: String!, $password: String!){
+ 	customerRegister(
+ 	input: {
+ 		email: $email,
+ 		password: $password
+ 	}
+ 	)
+ 	{
+ 		user {
+ 			id email token
+ 		}
+ 	}
+ }`
 
  @IonicPage()
  @Component({
@@ -15,11 +32,11 @@ import { Apollo } from 'apollo-angular';
  	templateUrl: 'login.html',
  })
  export class LoginPage {
- 	viewRegisterSection: any;
+ 	viewRegisterSection: any = false;
  	userRegisterDetail: any = {};
  	userLoginDetail: any = {};
  	loginMutation: any;
- 	constructor(public navCtrl: NavController, public navParams: NavParams, public apollo: Apollo) {
+ 	constructor(public navCtrl: NavController, public navParams: NavParams, public apollo: Apollo, public authUser: AuthUser, public deviceStorage: DevicestorageProvider, public toastCtrl: ToastController) {
  		this.userRegisterDetail = {
  			email: '',
  			password: ''
@@ -29,19 +46,6 @@ import { Apollo } from 'apollo-angular';
  			email: '',
  			password: ''
  		}
-
- 		// mutation for login
- 		this.loginMutation = gql` 		
- 		mutation {
- 			tokenCreate(email: "amit.verma@oneinsure.com", password:"test1234"){
- 				token, errors{message}
- 				user {
- 					id email
- 				}
- 			}
- 		}
- 		`;
- 		// mutation for login end
  	}
 
  	ionViewDidLoad() {
@@ -69,7 +73,21 @@ import { Apollo } from 'apollo-angular';
  					}
  				}
  				`, variables : {email: this.userLoginDetail.email, password: this.userLoginDetail.password} }).subscribe(data=>{
- 					console.log(data, 'data');
+ 					if (data.data.tokenCreate.token) {
+ 						this.authUser.token = data.data.tokenCreate.token;
+ 						this.authUser.email = data.data.tokenCreate.user.email;
+ 						this.authUser.userId = data.data.tokenCreate.user.id;
+
+ 						this.deviceStorage.setValue(this.authUser.auth_token, this.authUser);
+
+ 						Object.assign(this.authUser, this.authUser);
+ 						this.navCtrl.setRoot(HomePage);
+ 					}else {
+ 						// message toaster
+ 						let errorMessage = data.data.tokenCreate.errors[0].message;
+ 						console.log(errorMessage, 'toast message');
+ 						this.toaster(errorMessage)
+ 					}
  				})
  			}
  		}
@@ -78,19 +96,46 @@ import { Apollo } from 'apollo-angular';
  			if (formDetails) {
  				this.apollo.mutate({
  					mutation: gql`
- 					mutation customerRegister($input: [Object]!){
- 						customerRegister(input: $input){
+ 					mutation customerRegister($email: String!, $password: String!){
+ 						customerRegister(
+ 						input: {
+ 							email: $email,
+ 							password: $password
+ 						}
+ 						)
+ 						{
  							user {
  								id email token
  							}
- 							errors { message }
+ 							errors { field message }
  						}
- 					}
- 					`,variables : {input : { email: this.userRegisterDetail.email, password: this.userRegisterDetail.password }}
+ 					}` ,variables : { email: this.userRegisterDetail.email, password: this.userRegisterDetail.password }
  				}).subscribe(data=>{
  					console.log(data, 'data');
+ 					if (data.data.customerRegister.user) {
+ 						this.authUser.token = data.data.customerRegister.user.token;
+ 						this.authUser.email = data.data.customerRegister.user.email;
+ 						this.authUser.userId = data.data.customerRegister.user.id;
+
+ 						this.deviceStorage.setValue(this.authUser.auth_token, this.authUser);
+
+ 						Object.assign(this.authUser, this.authUser);
+ 						this.navCtrl.setRoot(HomePage);
+ 					}else {
+ 						let errorMessage = data.data.customerRegister.errors[0].message;
+ 						this.toaster(errorMessage);
+ 					}
  				})
  			}
  		}
 
+ 		// toaster 
+ 		toaster(message){
+ 			const createToast = this.toastCtrl.create({
+ 				message: message,
+ 				duration: 3000,
+ 			})
+ 			createToast.present();
+ 		}
+ 		// toaster end
  	}

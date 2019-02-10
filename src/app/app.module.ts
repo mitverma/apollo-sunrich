@@ -19,7 +19,11 @@ import { ApolloModule, Apollo } from 'apollo-angular';
 import { InMemoryCache } from 'apollo-cache-inmemory';
 import { HttpLinkModule, HttpLink } from 'apollo-angular-link-http';
 import { HttpClientModule, HttpHeaders } from "@angular/common/http";
-import { HttpModule } from '@angular/http'; 
+import { HttpModule } from '@angular/http';
+import { IonicStorageModule } from '@ionic/storage';
+import { AuthUser } from '../providers/entities/entities';
+import { DevicestorageProvider } from '../providers/devicestorage/devicestorage';
+import { AuthProvider } from '../providers/auth/auth'; 
 
 
 
@@ -39,6 +43,7 @@ import { HttpModule } from '@angular/http';
   HttpClientModule,    
   HttpLinkModule,
   IonicModule.forRoot(MyApp),
+  IonicStorageModule.forRoot(),
   ApolloModule,
   ],
   bootstrap: [IonicApp],
@@ -54,7 +59,10 @@ import { HttpModule } from '@angular/http';
   providers: [
   StatusBar,
   SplashScreen,
-  { provide: ErrorHandler, useClass: IonicErrorHandler }
+  { provide: ErrorHandler, useClass: IonicErrorHandler },
+  AuthUser,
+  DevicestorageProvider,
+  AuthProvider,
   ]
 })
 
