@@ -39,11 +39,9 @@ export class MyApp {
 
   logout(){
     this.deviceStorage.removeValue(this.authUser.auth_token).then(data=>{
-      if (data) {
-        Object.assign(this.authUser, new AuthUser());
-        this.menu.close();
-        this.nav.setRoot(LoginPage);
-      }
+      Object.assign(this.authUser, new AuthUser());
+      this.menu.close();
+      this.nav.setRoot(LoginPage);
     })
   }
 }
