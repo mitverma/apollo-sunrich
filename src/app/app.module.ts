@@ -75,7 +75,9 @@ export class AppModule {
     // if token is used uncmment this AND header section
     // let token = "";
 
-
+    // if (localStorage.get) {
+      //   // code...
+      // }
 
     apollo.create({
       link: httpLink.create({
@@ -83,9 +85,9 @@ export class AppModule {
         withCredentials: true,
         // method: 'GET'    
         // headers: new HttpHeaders({
-          //   authorization: "Bearer " + token
+          //   authorization: "JWT " + localStorage.getItem('token') !=null ? localStorage.getItem('token'): '',
           // })
-        }),
+      }),
       cache: new InMemoryCache()
     }); 
   }

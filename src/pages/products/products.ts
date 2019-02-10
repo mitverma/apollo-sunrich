@@ -3,6 +3,8 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import gql from 'graphql-tag';
 import { Apollo } from 'apollo-angular';
 import { ProductDetailPage } from '../product-detail/product-detail';
+import { AuthUser } from '../../providers/entities/entities';
+
 /**
  * Generated class for the ProductsPage page.
  *
@@ -40,7 +42,7 @@ import { ProductDetailPage } from '../product-detail/product-detail';
  })
  export class ProductsPage {
  	productList: any = [];
- 	constructor(public navCtrl: NavController, public navParams: NavParams, public apollo: Apollo,) {
+ 	constructor(public navCtrl: NavController, public navParams: NavParams, public apollo: Apollo, public authUser: AuthUser) {
  		let variableNew = null;
  		this.apollo.watchQuery<any>({ query: productQuery, variables: variableNew }).valueChanges.subscribe(data=>{
  			if (data) {
@@ -58,4 +60,12 @@ import { ProductDetailPage } from '../product-detail/product-detail';
  		this.navCtrl.push(ProductDetailPage, productInfo);
  	}
 
+
+ 	getOrdersList(){
+ 		this.apollo.mutate({mutation: gql``,
+ 			variables: {user: this.authUser.userId}
+ 		}).subscribe((data)=>{
+ 			console.log(data, 'data');
+ 		})
+ 	}
  }
