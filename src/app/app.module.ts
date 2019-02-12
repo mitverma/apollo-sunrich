@@ -79,16 +79,16 @@ export class AppModule {
       //   // code...
       // }
 
-    apollo.create({
-      link: httpLink.create({
-        uri: "http://www.sunrichrice.com/graphql/",
-        withCredentials: true,
-        // method: 'GET'    
-        // headers: new HttpHeaders({
-          //   authorization: "JWT " + localStorage.getItem('token') !=null ? localStorage.getItem('token'): '',
-          // })
-      }),
-      cache: new InMemoryCache()
-    }); 
+      apollo.create({
+        link: httpLink.create({
+          uri: "http://www.sunrichrice.com/graphql/",
+          withCredentials: true,
+          // method: 'GET'    
+          headers: new HttpHeaders({
+            authorization: localStorage.getItem('token') !=null ? 'JWT ' + localStorage.getItem('token'): '',
+          })
+        }),
+        cache: new InMemoryCache()
+      }); 
+    }
   }
-}

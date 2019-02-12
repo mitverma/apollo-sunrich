@@ -78,6 +78,8 @@ import { HomePage } from '../home/home';
  						this.authUser.email = data.data.tokenCreate.user.email;
  						this.authUser.userId = data.data.tokenCreate.user.id;
 
+ 						localStorage.setItem('token', this.authUser.token);
+
  						this.deviceStorage.setValue(this.authUser.auth_token, this.authUser);
 
  						Object.assign(this.authUser, this.authUser);
@@ -117,6 +119,8 @@ import { HomePage } from '../home/home';
  						this.authUser.email = data.data.customerRegister.user.email;
  						this.authUser.userId = data.data.customerRegister.user.id;
 
+ 						localStorage.setItem('token', this.authUser.token);
+ 						
  						this.deviceStorage.setValue(this.authUser.auth_token, this.authUser);
 
  						Object.assign(this.authUser, this.authUser);
@@ -138,4 +142,26 @@ import { HomePage } from '../home/home';
  			createToast.present();
  		}
  		// toaster end
+
+
+ 		getOrders(){
+ 			this.apollo.watchQuery<any>({
+ 				query: gql`
+ 				query orders($user: String!){
+ 					orders(user: $user){
+ 						edges {
+ 							node {
+ 								id userEmail
+ 							}
+ 						}
+ 					}
+ 				}
+ 				`, variables : { user: "amit.verma@oneinsure.com"}
+ 			}).valueChanges.subscribe(data=>{
+ 				console.log(data, 'data');
+ 			})
+ 		}
  	}
+
+ 	// "VXNlcjo0OA=="
+// "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJlbWFpbCI6ImFtaXQudmVybWFAb25laW5zdXJlLmNvbSIsImV4cCI6MTU0OTk0OTcwOSwib3JpZ19pYXQiOjE1NDk5NDk0MDl9.OrDlghSvcecehJCqgwUIynXLRsFsbYegjmI-AOd9Ppk"

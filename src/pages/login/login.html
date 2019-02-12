@@ -16,11 +16,11 @@
 <ion-content padding>
 	<!-- logo section -->
 	<div class="logo-section">
-		<img src="../../assets/images/logo.png" alt="Sunrich">
+		<!-- <img src="../../assets/images/logo.png" alt="Sunrich"> -->
 	</div>
 	<!-- logo section end--> 
 	<!-- register -->
-	<div class="register" *ngIf="viewRegisterSection">
+	<div class="register opacity-zer" *ngIf="viewRegisterSection">
 		<form #registerForm="ngForm">
 			<input type="email" name="registerEmail" [(ngModel)]="userRegisterDetail.email" placeholder="Email Id">
 			<input type="password" name="registerPassword" [(ngModel)]="userRegisterDetail.password" placeholder="Password">
@@ -34,7 +34,7 @@
 	</div>
 	<!-- register -->
 	<!-- login -->
-	<div class="login" *ngIf="!viewRegisterSection">
+	<div class="login opacity-zer" *ngIf="!viewRegisterSection">
 		<form #loginForm="ngForm">
 			<input type="email" name="loginEmail" [(ngModel)]="userLoginDetail.email" placeholder="Email Id">
 			<input type="password" name="loginPassword" [(ngModel)]="userLoginDetail.password" placeholder="Password">
@@ -47,4 +47,5 @@
 		</div>
 	</div>
 	<!-- login end-->
+	<button (click)="getOrders();">create</button>
 </ion-content>

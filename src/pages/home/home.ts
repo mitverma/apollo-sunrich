@@ -63,6 +63,24 @@ export class HomePage {
   productDetail(productInfo){
     this.navCtrl.push(ProductDetailPage, productInfo);
   }
+
+  getOrders(){
+    this.apollo.watchQuery<any>({
+      query: gql`
+      query orders($user: String!){
+        orders(user: $user){
+          edges {
+            node {
+              id userEmail
+            }
+          }
+        }
+      }
+      `, variables : { user: "amit.verma@oneinsure.com"}
+    }).valueChanges.subscribe(data=>{
+      console.log(data, 'data');
+    })
+  }
 }
 
 
