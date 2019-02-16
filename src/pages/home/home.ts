@@ -5,6 +5,7 @@ import { Apollo } from 'apollo-angular';
 import { UsersQuery, UserSummaryFragment } from '../../__generated__';
 import { Observable } from 'rxjs/Observable';
 import { ProductDetailPage } from '../product-detail/product-detail';
+import { CartPage } from '../cart/cart';
 
 
 const productQuery = gql`
@@ -13,7 +14,7 @@ query {
     edges{
       node {
         id name description thumbnailUrl url seoDescription price {
-          localized
+          localized amount
         }
         images {
           edges {
@@ -76,10 +77,47 @@ export class HomePage {
           }
         }
       }
-      `, variables : { user: "amit.verma@oneinsure.com"}
+      `, variables : { user: "amit.verma@oneinsure.com" }
     }).valueChanges.subscribe(data=>{
       console.log(data, 'data');
     })
+  }
+
+  // placeOrder(){
+    //   this.apollo.mutate({
+      //     mutation: gql`
+      //     mutation draftOrderCreate(userEmail: String!, quantity: Int!, variantId: String!){
+        //       draftOrderCreate(input: {
+          //         userEmail: $userEmail,
+          //         lines: [
+          //         {
+            //           quantity: $quantity,
+            //           variantId: $variantId,
+            //         }
+            //         ]
+            //       }){
+              //         errors { field message }
+              //         order {
+                //           id trackingClientId
+                //         }
+                //       }
+                //     }
+                //     `,variables: {
+                  //       userEmail: "amit.verma@oneinsure.com",
+                  //       lines: [
+                  //       {
+                    //         quantity: 1,
+                    //         variantId:  "UHJvZHVjdDo1",
+                    //       }
+                    //       ]
+                    //     }
+                    //   }).subscribe(data=>{
+
+                      //   })
+                      // }
+
+  viewCart(){
+    this.navCtrl.push(CartPage);
   }
 }
 

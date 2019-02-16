@@ -19,3 +19,12 @@ import { Injectable } from '@angular/core';
   		this.auth_token = 'APP_USER';
   	}
   }
+
+  @Injectable()
+  export class CartDetail {
+    cartArray : any = [];
+    constructor(){
+      this.cartArray = [
+      ];
+    }
+  }

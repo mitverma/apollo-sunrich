@@ -20,7 +20,7 @@ import { AuthUser } from '../../providers/entities/entities';
  		edges{
  			node {
  				id name description thumbnailUrl url seoDescription price {
- 					localized
+ 					localized amount
  				}
  				images {
  					edges {

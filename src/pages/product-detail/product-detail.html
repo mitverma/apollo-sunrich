@@ -7,7 +7,9 @@
 <ion-header>
 
 	<ion-navbar>
-		<ion-title>{{productDetailInfo ? productDetailInfo.name: 'Product Details'}}</ion-title>
+		<ion-title>{{productDetailInfo ? productDetailInfo.name: 'Product Details'}}
+			{{cartDetail && cartDetail.cartArray ? cartDetail.cartArray.length: '0'}}
+		</ion-title>
 	</ion-navbar>
 
 </ion-header>
@@ -25,7 +27,9 @@
 			<div class="next-slide" (click)="nextSlide();"></div>
 		</div>
 		<div class="product-quantity">
-			
+			<button class="btn-yellow" (click)="addToCart(productDetailInfo, 'remove')">Remove</button>
+			{{quantityCount}}
+			<button class="btn-yellow" (click)="addToCart(productDetailInfo, 'add')">Add</button>
 		</div>
 		<div class="product-info">
 			<h2 class="product-name">{{productDetailInfo.name}}</h2>
@@ -33,7 +37,7 @@
 			<p class="product-descp" [innerHTML]="productDetailInfo.description"></p>
 		</div>
 		<div class="button-group">
-			<button ion-button round class="btn-yellow">Add To Cart</button>
+			<button ion-button round class="btn-yellow" (click)="addToCart(productDetailInfo, '')">Add To Cart</button>
 			<button ion-button round class="btn-yellow">Buy Now</button>
 		</div>
 	</div>

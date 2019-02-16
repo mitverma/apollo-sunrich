@@ -4,6 +4,7 @@
       <ion-icon name="menu"></ion-icon>
     </button>
     <ion-title>Home</ion-title>
+    <span (click)="viewCart();">Cart</span>
   </ion-navbar>
 </ion-header>
 
@@ -18,7 +19,8 @@
     <div class="next-slide" (click)="nextSlide();"></div>
   </div>
   <div class="featured-product">
-    <button (click)="getOrders();">orders</button>
+    <button (click)="getOrders();">orders new</button>
+    <button (click)="placeOrder();">Place order</button>
     <h4 class="heading">Featured Products</h4>
     <ion-grid>
       <ion-row>
