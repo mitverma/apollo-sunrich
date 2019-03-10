@@ -21,7 +21,7 @@ import { CartDetail } from '../../providers/entities/entities';
 
  	constructor(public navCtrl: NavController, public navParams: NavParams, public cartDetail: CartDetail) {
  		this.productDetailInfo = {
- 			images: { edges: [] },
+ 			images: [],
  			name: '',
  			description: '',
  			price: '',

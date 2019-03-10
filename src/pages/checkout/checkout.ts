@@ -48,27 +48,44 @@ import { Apollo } from 'apollo-angular';
  	placeOrder(){
  		this.apollo.mutate({
  			mutation: gql`
- 			mutation draftOrderCreate(userEmail: String!, quantity: Int!, variantId: String!, user: String!, firstName: $String,
- 			lastName: String!, streetAddress1: String!, postalCode: String, phone: $phone, city: String!, country: String!,
- 			quantity: Int!, variantId: String!){
- 				draftOrderCreate(input: {
- 					userEmail: $userEmail,
- 					user: $user,
- 					shippingAddress: {
- 						firstName: $firstName,
- 						lastName: $lastName,
- 						streetAddress1: $streetAddress1,
- 						postalCode: $postalCode,
- 						phone: $phone,
- 						city: $city,
- 						country: $country,
- 					}
+ 			mutation checkoutCreate($quantity: Int!, $variantId: String!, $email: String!, $firstName: String!, $lastName: String!,
+ 			$companyName: String!, $streetAddress1: String!, $streetAddress: String!, $city: String!, $cityArea: String!, 
+ 			$postalCode: String!, $country: String!, $countryArea: String!, $phone: String!){
+ 				checkoutCreate(input: {
  					lines: [
  					{
  						quantity: $quantity,
  						variantId: $variantId,
  					}
- 					]
+ 					],
+ 					email: $email,
+ 					shippingAddress: {
+ 						firstName: $firstName,
+ 						lastName: $lastName,
+ 						companyName: $companyName,
+ 						streetAddress1: $streetAddress1,
+ 						streetAddress2: $streetAddress2,
+ 						city: $city,
+ 						cityArea: $cityArea,
+ 						postalCode: $postalCode,
+ 						country: $country,
+ 						countryArea: $countryArea,
+ 						phone: $phone,
+ 					},
+ 					billingAddress: {
+ 						firstName: $firstName,
+ 						lastName: $lastName,
+ 						companyName: $companyName,
+ 						streetAddress1: $streetAddress1,
+ 						streetAddress2: $streetAddress2,
+ 						city: $city,
+ 						cityArea: $cityArea,
+ 						postalCode: $postalCode,
+ 						country: $country,
+ 						countryArea: $countryArea,
+ 						phone: $phone,
+ 					},
+ 					
  				}){
  					errors { field message }
  					order {
@@ -77,23 +94,39 @@ import { Apollo } from 'apollo-angular';
  				}
  			}
  			`,variables: {
- 				userEmail: "amit.verma@oneinsure.com",
- 				user: "",
- 				shippingAddress: {
- 					firstName: "Amit",
- 					lastName: "Verma",
- 					streetAddress1: "Tilak Nagar",
- 					postalCode: "400070",
- 					phone: "8655568110",
- 					city: "Mumbai",
- 					country: "Maharashtra"
- 				},
  				lines: [
  				{
  					quantity: 1,
- 					variantId:  "UHJvZHVjdDo1",
+ 					variantId: "UHJvZHVjdFZhcmlhbnQ6MTQ",
+ 				},
+ 				],
+ 				email: "amit.verma@oneinsure.com",
+ 				shippingAddress: {
+ 					firstName: "Test",
+ 					lastName: "User",
+ 					companyName: "Test Company",
+ 					streetAddress1: "Test123",
+ 					streetAddress2: "Test1234",
+ 					city: "Mumbai",
+ 					cityArea: "Andheri",
+ 					postalCode: "400072",
+ 					country: "IN",
+ 					countryArea: "Maharashtra",
+ 					phone: "+919988776655",
+ 				},
+ 				billingAddress: {
+ 					firstName: "Test",
+ 					lastName: "User",
+ 					companyName: "Test Company",
+ 					streetAddress1: "Test123",
+ 					streetAddress2: "Test1234",
+ 					city: "Mumbai",
+ 					cityArea: "Andheri",
+ 					postalCode: "400072",
+ 					country: "IN",
+ 					countryArea: "Maharashtra",
+ 					phone: "+919988776655",
  				}
- 				]
  			}
  		}).subscribe(data=>{
 

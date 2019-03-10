@@ -19,8 +19,8 @@
 	<div class="product-detail-container">
 		<div class="sliders">
 			<ion-slides pager>
-				<ion-slide *ngFor="let images of productDetailInfo.images.edges">
-					<img src="http://www.sunrichrice.com{{images.node.url}}" alt="" class="img-fluid product-slide">
+				<ion-slide *ngFor="let images of productDetailInfo.images">
+					<img src="{{images.url}}" alt="" class="img-fluid product-slide">
 				</ion-slide>
 			</ion-slides>
 			<div class="previous-slide" (click)="previousSlide();"></div>
