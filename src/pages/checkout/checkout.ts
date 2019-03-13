@@ -48,14 +48,14 @@ import { Apollo } from 'apollo-angular';
  	placeOrder(){
  		this.apollo.mutate({
  			mutation: gql`
- 			mutation checkoutCreate($quantity: Int!, $variantId: String!, $email: String!, $firstName: String!, $lastName: String!,
- 			$companyName: String!, $streetAddress1: String!, $streetAddress: String!, $city: String!, $cityArea: String!, 
- 			$postalCode: String!, $country: String!, $countryArea: String!, $phone: String!){
+ 			mutation checkoutCreate($email: String, $firstName: String, $lastName: String,
+ 			$companyName: String, $streetAddress1: String, $streetAddress2: String, $city: String, $cityArea: String, 
+ 			$postalCode: String, $countryArea: String, $phone: String, ){
  				checkoutCreate(input: {
  					lines: [
  					{
- 						quantity: $quantity,
- 						variantId: $variantId,
+ 						variantId: "",
+ 						quantity: 0,
  					}
  					],
  					email: $email,
@@ -68,7 +68,7 @@ import { Apollo } from 'apollo-angular';
  						city: $city,
  						cityArea: $cityArea,
  						postalCode: $postalCode,
- 						country: $country,
+ 						country: "",
  						countryArea: $countryArea,
  						phone: $phone,
  					},
@@ -81,23 +81,23 @@ import { Apollo } from 'apollo-angular';
  						city: $city,
  						cityArea: $cityArea,
  						postalCode: $postalCode,
- 						country: $country,
+ 						country: "",
  						countryArea: $countryArea,
  						phone: $phone,
  					},
  					
  				}){
  					errors { field message }
- 					order {
- 						id trackingClientId
+ 					checkout {
+ 						id created
  					}
  				}
  			}
  			`,variables: {
  				lines: [
  				{
- 					quantity: 1,
- 					variantId: "UHJvZHVjdFZhcmlhbnQ6MTQ",
+ 					quantity: 2,
+ 					variantId: "UHJvZHVjdFZhcmlhbnQ6MTQ"
  				},
  				],
  				email: "amit.verma@oneinsure.com",
@@ -129,7 +129,90 @@ import { Apollo } from 'apollo-angular';
  				}
  			}
  		}).subscribe(data=>{
+ 			console.log(data, 'data');
+ 		})
+ 	}
 
+
+ 	checkoutPaymentCreate(){
+ 		this.apollo.mutate({
+ 			mutation: gql`
+ 			mutation checkoutPaymentCreate($checkoutId: ID!, $gateway: GatewaysEnum!, $token : String!, $amount: Decimal!, 
+ 			$firstName: String, $lastName: String, $companyName: String, $streetAddress1: String, $streetAddress2: String,
+ 			$city: String, $cityArea: String, $countryArea: String, $postalCode: String, $phone: String){
+ 				checkoutPaymentCreate(
+ 				checkoutId: $checkoutId, 
+ 				input: {
+ 					gateway: $gateway, 
+ 					token : $token, 
+ 					amount: $amount, 
+ 					billingAddress :  {
+ 						firstName: $firstName, 
+ 						lastName: $lastName, 
+ 						companyName: $companyName, 
+ 						streetAddress1: $streetAddress1, 
+ 						streetAddress2: $streetAddress2,
+ 						city: $city, 
+ 						cityArea: $cityArea, 
+ 						country: "", 
+ 						countryArea: $countryArea, 
+ 						postalCode: $postalCode, 
+ 						phone: $phone
+ 					}
+ 				}){
+ 					errors {
+ 						message field
+ 					}
+ 					checkout {
+ 						created token
+ 					}
+ 					payment {
+ 						gateway created
+ 					}
+ 				}
+ 			}
+ 			`, variables: {
+ 				checkoutId: "Q2hlY2tvdXQ6ODcwNTc4MGYtNmZlMi00NDQ4LThiZGUtOTVhNGUwNDk5MDlj",
+ 				gateway: "COD",
+ 				amount: "1000",
+ 				token: "",
+ 				billingAddress: {
+ 					firstName :"Amit",
+ 					lastName: "Verma",
+ 					companyName:"Test",
+ 					streetAddress1: "Testing",
+ 					streetAddress2: "Testing1",
+ 					city: "Mumbai",
+ 					cityArea: "Panvel",
+ 					country:"IN",
+ 					countryArea: "Maharashtra",
+ 					postalCode: "400070",
+ 					phone: "+918655568110",
+ 				}
+ 			}
+ 		}).subscribe((data: any)=>{
+ 			console.log(data, 'data');
+ 		})
+ 	}
+
+ 	checkoutComplete(){
+ 		this.apollo.mutate({
+ 			mutation: gql`
+ 			mutation checkoutComplete($checkoutId: ID!){
+ 				checkoutComplete(checkoutId: $checkoutId){
+ 					errors {
+ 						message field
+ 					}
+ 					order {
+ 						id
+ 					}
+ 				}
+ 			}
+ 			`, variables: {
+ 				checkoutId : "Q2hlY2tvdXQ6ODcwNTc4MGYtNmZlMi00NDQ4LThiZGUtOTVhNGUwNDk5MDlj"
+ 			}
+ 		}).subscribe((data: any)=>{
+ 			console.log(data, 'data checkout completed');
  		})
  	}
 

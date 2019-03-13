@@ -5,6 +5,7 @@ import { SplashScreen } from '@ionic-native/splash-screen';
 
 import { LoginPage } from '../pages/login/login'; 
 import { HomePage } from '../pages/home/home'; 
+import { CheckoutPage } from '../pages/checkout/checkout'; 
 import { AuthUser } from '../providers/entities/entities';
 import { DevicestorageProvider } from '../providers/devicestorage/devicestorage';
 
@@ -28,6 +29,7 @@ export class MyApp {
           console.log(data, 'data value');
           Object.assign(this.authUser, data);
           this.nav.setRoot(HomePage);
+          // this.nav.setRoot(CheckoutPage);
         }else {
 
         }

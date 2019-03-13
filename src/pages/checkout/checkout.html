@@ -34,5 +34,7 @@
 		<input type="text" [(ngModel)]="billingDetail.city" name="city" placeholder="city" required>
 		<input type="text" [(ngModel)]="billingDetail.country" name="country" placeholder="country" required> 
 	</form>
-	<button (click)="placeOrder()">Place Order</button>
+	<button (click)="placeOrder();">Place Order</button>
+	<button (click)="checkoutPaymentCreate();">Checkout payment create</button>
+	<button (click)="checkoutComplete();">Checkout complete</button>
 </ion-content>
