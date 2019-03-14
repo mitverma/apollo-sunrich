@@ -48,43 +48,12 @@ import { Apollo } from 'apollo-angular';
  	placeOrder(){
  		this.apollo.mutate({
  			mutation: gql`
- 			mutation checkoutCreate($email: String, $firstName: String, $lastName: String,
- 			$companyName: String, $streetAddress1: String, $streetAddress2: String, $city: String, $cityArea: String, 
- 			$postalCode: String, $countryArea: String, $phone: String, ){
+ 			mutation checkoutCreate( $lines: [CheckoutLineInput]!, $email: String, $shippingAddress: AddressInput!, $billingAddress: AddressInput!){
  				checkoutCreate(input: {
- 					lines: [
- 					{
- 						variantId: "",
- 						quantity: 0,
- 					}
- 					],
+ 					lines: $lines,
  					email: $email,
- 					shippingAddress: {
- 						firstName: $firstName,
- 						lastName: $lastName,
- 						companyName: $companyName,
- 						streetAddress1: $streetAddress1,
- 						streetAddress2: $streetAddress2,
- 						city: $city,
- 						cityArea: $cityArea,
- 						postalCode: $postalCode,
- 						country: "",
- 						countryArea: $countryArea,
- 						phone: $phone,
- 					},
- 					billingAddress: {
- 						firstName: $firstName,
- 						lastName: $lastName,
- 						companyName: $companyName,
- 						streetAddress1: $streetAddress1,
- 						streetAddress2: $streetAddress2,
- 						city: $city,
- 						cityArea: $cityArea,
- 						postalCode: $postalCode,
- 						country: "",
- 						countryArea: $countryArea,
- 						phone: $phone,
- 					},
+ 					shippingAddress: $shippingAddress,
+ 					billingAddress: $billingAddress,
  					
  				}){
  					errors { field message }
@@ -97,7 +66,7 @@ import { Apollo } from 'apollo-angular';
  				lines: [
  				{
  					quantity: 2,
- 					variantId: "UHJvZHVjdFZhcmlhbnQ6MTQ"
+ 					variantId: "UHJvZHVjdFZhcmlhbnQ6MTI="
  				},
  				],
  				email: "amit.verma@oneinsure.com",
@@ -130,35 +99,27 @@ import { Apollo } from 'apollo-angular';
  			}
  		}).subscribe(data=>{
  			console.log(data, 'data');
+ 			if (data) {
+ 				let checkoutId = data.data['checkoutCreate']['checkout']['id'];
+ 				console.log(checkoutId, 'checkout id');
+ 				this.checkoutPaymentCreate(checkoutId);
+ 			}
  		})
  	}
 
 
- 	checkoutPaymentCreate(){
+ 	checkoutPaymentCreate(checkoutId){
  		this.apollo.mutate({
  			mutation: gql`
  			mutation checkoutPaymentCreate($checkoutId: ID!, $gateway: GatewaysEnum!, $token : String!, $amount: Decimal!, 
- 			$firstName: String, $lastName: String, $companyName: String, $streetAddress1: String, $streetAddress2: String,
- 			$city: String, $cityArea: String, $countryArea: String, $postalCode: String, $phone: String){
+ 			$billingAddress: AddressInput!){
  				checkoutPaymentCreate(
  				checkoutId: $checkoutId, 
  				input: {
  					gateway: $gateway, 
  					token : $token, 
  					amount: $amount, 
- 					billingAddress :  {
- 						firstName: $firstName, 
- 						lastName: $lastName, 
- 						companyName: $companyName, 
- 						streetAddress1: $streetAddress1, 
- 						streetAddress2: $streetAddress2,
- 						city: $city, 
- 						cityArea: $cityArea, 
- 						country: "", 
- 						countryArea: $countryArea, 
- 						postalCode: $postalCode, 
- 						phone: $phone
- 					}
+ 					billingAddress : $billingAddress
  				}){
  					errors {
  						message field
@@ -172,7 +133,7 @@ import { Apollo } from 'apollo-angular';
  				}
  			}
  			`, variables: {
- 				checkoutId: "Q2hlY2tvdXQ6ODcwNTc4MGYtNmZlMi00NDQ4LThiZGUtOTVhNGUwNDk5MDlj",
+ 				checkoutId: checkoutId,
  				gateway: "COD",
  				amount: "1000",
  				token: "",
@@ -191,11 +152,11 @@ import { Apollo } from 'apollo-angular';
  				}
  			}
  		}).subscribe((data: any)=>{
- 			console.log(data, 'data');
+ 			this.checkoutComplete(checkoutId);
  		})
  	}
 
- 	checkoutComplete(){
+ 	checkoutComplete(checkoutId){
  		this.apollo.mutate({
  			mutation: gql`
  			mutation checkoutComplete($checkoutId: ID!){
@@ -209,7 +170,7 @@ import { Apollo } from 'apollo-angular';
  				}
  			}
  			`, variables: {
- 				checkoutId : "Q2hlY2tvdXQ6ODcwNTc4MGYtNmZlMi00NDQ4LThiZGUtOTVhNGUwNDk5MDlj"
+ 				checkoutId : checkoutId
  			}
  		}).subscribe((data: any)=>{
  			console.log(data, 'data checkout completed');
