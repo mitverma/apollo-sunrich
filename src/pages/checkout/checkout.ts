@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import gql from 'graphql-tag';
+import { CheckOutEntity } from '../../providers/entities/entities';
 import { Apollo } from 'apollo-angular';
 /**
  * Generated class for the CheckoutPage page.
@@ -17,23 +18,31 @@ import { Apollo } from 'apollo-angular';
  export class CheckoutPage {
  	shippingDetail: any;
  	billingDetail: any;
- 	constructor(public navCtrl: NavController, public navParams: NavParams, public apollo: Apollo) {
+ 	constructor(public navCtrl: NavController, public navParams: NavParams, public apollo: Apollo, public checkoutEntity: CheckOutEntity) {
  		this.shippingDetail = {
  			firstName: '',
  			lastName: '',
- 			streetAddress: '',
+ 			companyName: '',
+ 			streetAddress1: '',
+ 			streetAddress2: '',
  			postalCode:'',
  			city: '',
- 			country: ''
+ 			cityArea: '',
+ 			country: '',
+ 			countryArea: ''
  		}
 
  		this.billingDetail = {
  			firstName: '',
  			lastName: '',
- 			streetAddress: '',
+ 			companyName: '',
+ 			streetAddress1: '',
+ 			streetAddress2: '',
  			postalCode:'',
  			city: '',
- 			country: ''
+ 			cityArea: '',
+ 			country: '',
+ 			countryArea: ''
  		}
  	}
 
@@ -63,38 +72,33 @@ import { Apollo } from 'apollo-angular';
  				}
  			}
  			`,variables: {
- 				lines: [
- 				{
- 					quantity: 2,
- 					variantId: "UHJvZHVjdFZhcmlhbnQ6MTI="
- 				},
- 				],
+ 				lines: this.checkoutEntity.checkOutList,
  				email: "amit.verma@oneinsure.com",
  				shippingAddress: {
- 					firstName: "Test",
- 					lastName: "User",
- 					companyName: "Test Company",
- 					streetAddress1: "Test123",
- 					streetAddress2: "Test1234",
- 					city: "Mumbai",
- 					cityArea: "Andheri",
- 					postalCode: "400072",
+ 					firstName: this.shippingDetail.firstName,
+ 					lastName: this.shippingDetail.lastName,
+ 					companyName: this.shippingDetail.companyName,
+ 					streetAddress1: this.shippingDetail.streetAddress1,
+ 					streetAddress2: this.shippingDetail.streetAddress2,
+ 					city: this.shippingDetail.city,
+ 					cityArea: this.shippingDetail.cityArea,
+ 					postalCode: this.shippingDetail.postalCode,
  					country: "IN",
- 					countryArea: "Maharashtra",
- 					phone: "+919988776655",
+ 					countryArea: this.shippingDetail.countryArea,
+ 					phone: '+91'+this.shippingDetail.phone,
  				},
  				billingAddress: {
- 					firstName: "Test",
- 					lastName: "User",
- 					companyName: "Test Company",
- 					streetAddress1: "Test123",
- 					streetAddress2: "Test1234",
- 					city: "Mumbai",
- 					cityArea: "Andheri",
- 					postalCode: "400072",
+ 					firstName: this.billingDetail.firstName,
+ 					lastName: this.billingDetail.lastName,
+ 					companyName: this.billingDetail.companyName,
+ 					streetAddress1: this.billingDetail.streetAddress1,
+ 					streetAddress2: this.billingDetail.streetAddress2,
+ 					city: this.billingDetail.city,
+ 					cityArea: this.billingDetail.cityArea,
+ 					postalCode: this.billingDetail.postalCode,
  					country: "IN",
- 					countryArea: "Maharashtra",
- 					phone: "+919988776655",
+ 					countryArea: this.billingDetail.countryArea,
+ 					phone: '+91'+this.billingDetail.phone,
  				}
  			}
  		}).subscribe(data=>{
@@ -138,17 +142,17 @@ import { Apollo } from 'apollo-angular';
  				amount: "1000",
  				token: "",
  				billingAddress: {
- 					firstName :"Amit",
- 					lastName: "Verma",
- 					companyName:"Test",
- 					streetAddress1: "Testing",
- 					streetAddress2: "Testing1",
- 					city: "Mumbai",
- 					cityArea: "Panvel",
- 					country:"IN",
- 					countryArea: "Maharashtra",
- 					postalCode: "400070",
- 					phone: "+918655568110",
+ 					firstName: this.billingDetail.firstName,
+ 					lastName: this.billingDetail.lastName,
+ 					companyName: this.billingDetail.companyName,
+ 					streetAddress1: this.billingDetail.streetAddress1,
+ 					streetAddress2: this.billingDetail.streetAddress2,
+ 					city: this.billingDetail.city,
+ 					cityArea: this.billingDetail.cityArea,
+ 					postalCode: this.billingDetail.postalCode,
+ 					country: "IN",
+ 					countryArea: this.billingDetail.countryArea,
+ 					phone: '+91'+this.billingDetail.phone,
  				}
  			}
  		}).subscribe((data: any)=>{
@@ -175,6 +179,11 @@ import { Apollo } from 'apollo-angular';
  		}).subscribe((data: any)=>{
  			console.log(data, 'data checkout completed');
  		})
+ 	}
+
+ 	ionViewWillLeave(){
+ 		// Object.assign(this.checkoutEntity, new CheckOutEntity());
+ 		console.log(this.checkoutEntity, 'checkout entity');
  	}
 
  }

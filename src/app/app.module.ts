@@ -11,6 +11,7 @@ import { LoginPage } from '../pages/login/login';
 import { ProductDetailPage } from '../pages/product-detail/product-detail'; 
 import { CartPage } from '../pages/cart/cart'; 
 import { CheckoutPage } from '../pages/checkout/checkout'; 
+import { OrdersPage } from '../pages/orders/orders'; 
 
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
@@ -26,7 +27,7 @@ import { IonicStorageModule } from '@ionic/storage';
 import { AuthUser } from '../providers/entities/entities';
 import { DevicestorageProvider } from '../providers/devicestorage/devicestorage';
 import { AuthProvider } from '../providers/auth/auth'; 
-import { CartDetail } from '../providers/entities/entities';
+import { CartDetail,CheckOutEntity } from '../providers/entities/entities';
 
 
 @NgModule({
@@ -39,7 +40,8 @@ import { CartDetail } from '../providers/entities/entities';
   LoginPage,
   ProductDetailPage,
   CartPage,
-  CheckoutPage
+  CheckoutPage,
+  OrdersPage
   ],
   imports: [
   BrowserModule,
@@ -60,7 +62,8 @@ import { CartDetail } from '../providers/entities/entities';
   LoginPage,
   ProductDetailPage,
   CartPage,
-  CheckoutPage
+  CheckoutPage,
+  OrdersPage
   ],
   providers: [
   StatusBar,
@@ -69,7 +72,8 @@ import { CartDetail } from '../providers/entities/entities';
   AuthUser,
   DevicestorageProvider,
   AuthProvider,
-  CartDetail
+  CartDetail,
+  CheckOutEntity,
   ]
 })
 

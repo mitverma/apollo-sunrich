@@ -66,9 +66,16 @@ import { HomePage } from '../home/home';
  			this.apollo.mutate({mutation:  gql` 		
  				mutation tokenCreate($email: String!, $password: String!){
  					tokenCreate(email: $email, password: $password){
- 						token, errors{message}
+ 						token, errors{ message field }
  						user {
  							id email
+ 						}
+ 						checkout {
+ 							created id lines {
+ 								id variant {
+ 									id sku name quantity 
+ 								}
+ 							}
  						}
  					}
  				}

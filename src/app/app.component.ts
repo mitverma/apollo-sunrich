@@ -4,8 +4,8 @@ import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 
 import { LoginPage } from '../pages/login/login'; 
+import { OrdersPage } from '../pages/orders/orders'; 
 import { HomePage } from '../pages/home/home'; 
-import { CheckoutPage } from '../pages/checkout/checkout'; 
 import { AuthUser } from '../providers/entities/entities';
 import { DevicestorageProvider } from '../providers/devicestorage/devicestorage';
 
@@ -29,7 +29,7 @@ export class MyApp {
           console.log(data, 'data value');
           Object.assign(this.authUser, data);
           // this.nav.setRoot(HomePage);
-          this.nav.setRoot(CheckoutPage);
+          this.nav.setRoot(OrdersPage);
         }else {
 
         }
@@ -42,7 +42,7 @@ export class MyApp {
   logout(){
     this.deviceStorage.removeValue(this.authUser.auth_token).then(data=>{
       Object.assign(this.authUser, new AuthUser());
-      this.menu.close();
+      this.menu.close(); 
       this.nav.setRoot(LoginPage);
     })
   }

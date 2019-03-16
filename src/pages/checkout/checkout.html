@@ -20,19 +20,29 @@
 	<form action="">
 		<input type="text" [(ngModel)]="shippingDetail.firstName" name="firstName" placeholder="firstName" required>
 		<input type="text" [(ngModel)]="shippingDetail.lastName" name="lastName" placeholder="lastName" required>
-		<input type="text" [(ngModel)]="shippingDetail.streetAddress" name="streetAddress" placeholder="streetAddress" required>
+		<input type="text" [(ngModel)]="shippingDetail.companyName" name="companyName" placeholder="companyName" required>
+		<input type="text" [(ngModel)]="shippingDetail.streetAddress1" name="streetAddress1" placeholder="streetAddress1" required>
+		<input type="text" [(ngModel)]="shippingDetail.streetAddress2" name="streetAddress2" placeholder="streetAddress2" required>
 		<input type="tel" [(ngModel)]="shippingDetail.postalCode" name="postalCode" placeholder="postalCode" required>
 		<input type="text" [(ngModel)]="shippingDetail.city" name="city" placeholder="city" required>
+		<input type="text" [(ngModel)]="shippingDetail.cityArea" name="cityArea" placeholder="cityArea" required>
 		<input type="text" [(ngModel)]="shippingDetail.country" name="country" placeholder="Country" required> 
+		<input type="text" [(ngModel)]="shippingDetail.countryArea" name="countryArea" placeholder="countryArea" required> 
+		<input type="text" [(ngModel)]="shippingDetail.phone" name="phone" placeholder="phone" required> 
 	</form>
 	<button (click)="setSameBilling();">Set same billing address as shippping address</button>
 	<form>
 		<input type="text" [(ngModel)]="billingDetail.firstName" name="firstName" placeholder="firstName" required>
 		<input type="text" [(ngModel)]="billingDetail.lastName" name="lastName" placeholder="lastName" required>
-		<input type="text" [(ngModel)]="billingDetail.streetAddress" name="streetAddress" placeholder="streetAddress" required>
+		<input type="text" [(ngModel)]="billingDetail.companyName" name="companyName" placeholder="companyName" required>
+		<input type="text" [(ngModel)]="billingDetail.streetAddress1" name="streetAddress1" placeholder="streetAddress1" required>
+		<input type="text" [(ngModel)]="billingDetail.streetAddress2" name="streetAddress2" placeholder="streetAddress2" required>
 		<input type="tel" [(ngModel)]="billingDetail.postalCode" name="postalCode" placeholder="postalCode" required>
 		<input type="text" [(ngModel)]="billingDetail.city" name="city" placeholder="city" required>
-		<input type="text" [(ngModel)]="billingDetail.country" name="country" placeholder="country" required> 
+		<input type="text" [(ngModel)]="billingDetail.cityArea" name="cityArea" placeholder="cityArea" required>
+		<input type="text" [(ngModel)]="billingDetail.country" name="country" placeholder="Country" required> 
+		<input type="text" [(ngModel)]="billingDetail.countryArea" name="countryArea" placeholder="countryArea" required> 
+		<input type="text" [(ngModel)]="billingDetail.phone" name="phone" placeholder="phone" required> 
 	</form>
 	<button (click)="placeOrder();">Place Order</button>
 	<button (click)="checkoutPaymentCreate();">Checkout payment create</button>

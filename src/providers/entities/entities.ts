@@ -28,3 +28,11 @@ import { Injectable } from '@angular/core';
       ];
     }
   }
+
+  @Injectable()
+  export class CheckOutEntity {
+    checkOutList: any = [];
+    constructor(){
+      this.checkOutList = [];
+    }
+  }

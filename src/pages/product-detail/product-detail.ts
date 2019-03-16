@@ -40,7 +40,7 @@ import { CartDetail } from '../../providers/entities/entities';
  		// set quantity count
  		if (this.cartDetail && this.cartDetail.cartArray && this.cartDetail.cartArray.length) {
  			this.cartDetail.cartArray.forEach(list=>{
- 				if (list.productId == this.productDetailInfo.id) {
+ 				if (list.productId == this.productDetailInfo.variants[0].id) {
  					this.quantityCount = list.productQuantity;
  				}
  			})
@@ -53,8 +53,8 @@ import { CartDetail } from '../../providers/entities/entities';
  	addToCart(product, type){
  		console.log(product, 'product');
  		let productSetObj = {
- 			productId : product.id,
- 			productImage: product.thumbnailUrl,
+ 			productId : product.variants[0] ?  product.variants[0].id : product.id,
+ 			productImage: product.thumbnail ? product.thumbnail.url : '',
  			productDescp: product.seoDescription,
  			productName: product.name,
  			productPrice: product.price.amount,
@@ -65,7 +65,7 @@ import { CartDetail } from '../../providers/entities/entities';
  			let productExist = true;
  			if (this.cartDetail && this.cartDetail.cartArray && this.cartDetail.cartArray.length) {
  				this.cartDetail.cartArray.forEach((list, index)=>{
- 					if (list.productId == product.id) {
+ 					if (list.productId == product.variants[0].id) {
  						// matches all 
  						
 

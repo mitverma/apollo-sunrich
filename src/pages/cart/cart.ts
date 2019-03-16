@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
-import { CartDetail } from '../../providers/entities/entities';
+import { CartDetail,CheckOutEntity } from '../../providers/entities/entities';
 import { CheckoutPage } from '../checkout/checkout';
 
 
@@ -19,7 +19,7 @@ import { CheckoutPage } from '../checkout/checkout';
  })
  export class CartPage {
  	cartList: any = [];
- 	constructor(public navCtrl: NavController, public navParams: NavParams, public cartDetail: CartDetail) {
+ 	constructor(public navCtrl: NavController, public navParams: NavParams, public cartDetail: CartDetail, public checkoutEntity : CheckOutEntity,) {
  		this.cartList = this.cartDetail.cartArray;
  	}
 
@@ -27,6 +27,18 @@ import { CheckoutPage } from '../checkout/checkout';
  		console.log('ionViewDidLoad CartPage');
  	}
  	checkout(){
+ 		console.log(this.cartDetail.cartArray, 'cart array');
+ 		let lineMatch = true;
+ 		for(let i = 0; i < this.cartDetail.cartArray.length; i++){
+ 			let lineObj = {
+ 				quantity: this.cartDetail.cartArray[i].productQuantity,
+ 				variantId: this.cartDetail.cartArray[i].productId
+ 			}
+ 			this.checkoutEntity.checkOutList.push(lineObj);
+ 		}
+ 		console.log(this.checkoutEntity.checkOutList, 'checkoutLines');
+
+ 		Object.assign(this.checkoutEntity.checkOutList, this.checkoutEntity.checkOutList);
  		this.navCtrl.push(CheckoutPage);
  	}
 
