@@ -4,7 +4,10 @@
       <ion-icon name="menu"></ion-icon>
     </button>
     <ion-title>Home</ion-title>
-    <span (click)="viewCart();">Cart</span>
+    <span class="cart-view" (click)="viewCart();">
+      <span *ngIf="cartDetail && cartDetail.cartArray && cartDetail.cartArray.length">{{cartDetail.cartArray.length}}</span>
+      <i class="fas fa-shopping-cart"></i>
+    </span> 
   </ion-navbar>
 </ion-header>
 

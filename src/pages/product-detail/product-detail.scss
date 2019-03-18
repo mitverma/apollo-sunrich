@@ -1,4 +1,30 @@
 page-product-detail {
+
+	// cart detail
+	.cart-view {
+		position: absolute;
+		right: 20px;
+		bottom: 15px;
+		.fas {
+			font-size: 20px;
+			color: $color-white;
+		}
+		span {
+			width: 20px;
+			height: 20px;
+			display: block;
+			background-color: #fbd05d;
+			text-align: center;
+			line-height: 20px;
+			border-radius: 100%;
+			font-size: 10px;
+			position: absolute;
+			right: -11px;
+			top: -11px;
+		}
+	}
+	// cart detail end
+
 	.scroll-content {
 		padding: 0 !important;
 	}

@@ -8,8 +8,12 @@
 
 	<ion-navbar>
 		<ion-title>{{productDetailInfo ? productDetailInfo.name: 'Product Details'}}
-			{{cartDetail && cartDetail.cartArray ? cartDetail.cartArray.length: '0'}}
+
 		</ion-title>
+		<span class="cart-view" (click)="viewCart();">
+			<span *ngIf="cartDetail && cartDetail.cartArray && cartDetail.cartArray.length">{{cartDetail.cartArray.length}}</span>
+			<i class="fas fa-shopping-cart"></i>
+		</span>	
 	</ion-navbar>
 
 </ion-header>

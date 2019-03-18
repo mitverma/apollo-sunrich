@@ -28,8 +28,8 @@ export class MyApp {
         if (data) {
           console.log(data, 'data value');
           Object.assign(this.authUser, data);
-          // this.nav.setRoot(HomePage);
-          this.nav.setRoot(OrdersPage);
+          this.nav.setRoot(HomePage);
+          // this.nav.setRoot(OrdersPage);
         }else {
 
         }

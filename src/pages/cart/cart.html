@@ -14,24 +14,31 @@
 
 
 <ion-content padding>
-	<ion-list>
-		<ion-item *ngFor="let cart of cartList">
-			<img src="http://www.sunrichrice.com{{cart.productImage}}" alt="" width="40px">
-			<span>{{cart.productName}}</span>
-			<span>Quantity {{cart.productQuantity}}</span>
-			<span>Descp {{cart.productDescp}}</span>
-		</ion-item>
-	</ion-list>
+	<ion-grid class="cart-list" *ngFor="let cart of cartList">
+		<ion-row>
+			<ion-col col-4>
+				<div class="product-img-container">
+					<img src="{{cart.productImage}}" alt="" class="img-fluid">
+				</div>
+			</ion-col>
+			<ion-col col-8>
+				<h4>{{cart.productName}}</h4>
+				<h5>{{cart.productDescp}}</h5>
+				<div class="clearfix">
+					<div class="f-left product-quantity">
+						<span class="quantity">							
+							<span class="product-remove" (click)="cartQuantity(cart, 'remove')">-</span>
+							{{cart.productQuantity}}
+						</span>
+						<span class="product-add" (click)="cartQuantity(cart, 'add')">+</span>
+					</div>
+					<div class="f-right product-prize">
+						<i class="fas fa-rupee-sign"></i>
+						<span class="">{{cart.productTotalPrice}}</span>
+					</div>
+				</div>
+			</ion-col>
+		</ion-row>
+	</ion-grid>
 	<button class="btn-yellow" (click)="checkout()">Checkout</button>
-	<div class="" *ngFor="let cart of cartList">
-		<img src="http://www.sunrichrice.com{{cart.productImage}}" alt="" width="40px">
-		<span>{{cart.productName}}</span>
-		<span>Quantity 
-			{{cart.productQuantity}}
-			<button (click)="cartQuantity(cart, 'add')">Add</button> 
-			<button (click)="cartQuantity(cart, 'remove')">Remove</button>
-		</span>
-		<span>{{cart.productTotalPrice}}</span>
-		<span>Descp {{cart.productDescp}}</span>
-	</div>
 </ion-content>

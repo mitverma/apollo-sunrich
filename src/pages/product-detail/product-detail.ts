@@ -1,5 +1,5 @@
-import { Component, ViewChild } from '@angular/core';
-import { IonicPage, NavController, NavParams, Slides } from 'ionic-angular';
+import { Component, ViewChild, } from '@angular/core';
+import { IonicPage, NavController, NavParams, Slides, Events } from 'ionic-angular';
 import { CartDetail } from '../../providers/entities/entities';
 
 /**
@@ -19,7 +19,10 @@ import { CartDetail } from '../../providers/entities/entities';
  	productDetailInfo: any;
  	quantityCount: any = 0;
 
- 	constructor(public navCtrl: NavController, public navParams: NavParams, public cartDetail: CartDetail) {
+ 	constructor(public navCtrl: NavController,
+ 		public navParams: NavParams, 
+ 		public cartDetail: CartDetail,
+ 		public events: Events) {
  		this.productDetailInfo = {
  			images: [],
  			name: '',
@@ -97,6 +100,11 @@ import { CartDetail } from '../../providers/entities/entities';
  				this.cartDetail.cartArray.push(productSetObj);
  				this.quantityCount = 1;
  				console.log(this.cartDetail, 'cart');
+
+ 				// cart events publish
+ 				this.events.publish('cartDetail', this.cartDetail);
+ 				// cart events publish end
+
  			}
  		}
  	}

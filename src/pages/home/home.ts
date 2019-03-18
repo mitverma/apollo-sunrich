@@ -1,11 +1,12 @@
 import { Component,ViewChild} from '@angular/core';
-import { NavController,Slides} from 'ionic-angular';
+import { NavController,Slides, Events } from 'ionic-angular';
 import gql from 'graphql-tag';
 import { Apollo } from 'apollo-angular';
 import { UsersQuery, UserSummaryFragment } from '../../__generated__';
 import { Observable } from 'rxjs/Observable';
 import { ProductDetailPage } from '../product-detail/product-detail';
 import { CartPage } from '../cart/cart';
+import { CartDetail } from '../../providers/entities/entities';
 
 
 const productQuery = gql`
@@ -43,6 +44,8 @@ export class HomePage {
   constructor(
     public navCtrl: NavController,
     private apollo: Apollo,
+    public cartDetail: CartDetail,
+    public events: Events,
     ) {
     // this.users$ = this.apollo.query<UsersQuery>({ query })
     // .map(({ data }) => data.allUsers);
@@ -53,6 +56,14 @@ export class HomePage {
         console.log(this.productList, 'product list');
       }
     });
+  }
+
+  ionViewDidLoad(){
+    this.events.subscribe('cartDetail', (data)=>{
+      if (data) {
+        this.cartDetail = data;
+      }
+    })
   }
 
 
@@ -127,3 +138,5 @@ export class HomePage {
 
 
                     // things to be done
+
+                    // https://yalantis.com/blog/top-design-solutions-for-ecommerce-apps/
