@@ -33,7 +33,8 @@
 						<span class="product-add" (click)="cartQuantity(cart, 'add')">+</span>
 					</div>
 					<div class="f-right product-prize">
-						<i class="fas fa-rupee-sign"></i>
+						<!-- <i class="fas fa-rupee-sign"></i> -->
+						<span>₹</span>
 						<span class="">{{cart.productTotalPrice}}</span>
 					</div>
 				</div>
@@ -43,10 +44,11 @@
 	<div class="sub-total">
 		<div class="clearfix">
 			<div class="f-left">
-				<span>SubTotal</span>
+				<span class="total-heading">SubTotal</span>
 			</div>
-			<div class="r-left">
-				{{subTotal}}
+			<div class="f-right">
+				<span class="total-cost">₹ {{subTotal}}</span>
+
 			</div>
 		</div>
 	</div>

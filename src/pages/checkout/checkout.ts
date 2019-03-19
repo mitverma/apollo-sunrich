@@ -18,6 +18,7 @@ import { Apollo } from 'apollo-angular';
  export class CheckoutPage {
  	shippingDetail: any;
  	billingDetail: any;
+ 	addressSame: boolean = false;
  	constructor(public navCtrl: NavController, public navParams: NavParams, public apollo: Apollo, public checkoutEntity: CheckOutEntity) {
  		this.shippingDetail = {
  			firstName: '',
@@ -182,8 +183,18 @@ import { Apollo } from 'apollo-angular';
  	}
 
  	ionViewWillLeave(){
- 		// Object.assign(this.checkoutEntity, new CheckOutEntity());
+ 		Object.assign(this.checkoutEntity, new CheckOutEntity());
  		console.log(this.checkoutEntity, 'checkout entity');
+ 	}
+
+ 	setAddress(){
+ 		setTimeout(()=>{
+ 			if (this.addressSame) {
+ 				this.setSameBilling();
+ 			}else{
+ 				this.billingDetail = {};
+ 			}
+ 		},500);
  	}
 
  }

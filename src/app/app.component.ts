@@ -76,7 +76,12 @@ export class MyApp {
       this.nav.setRoot(LoginPage);
     })
   }
+
+  openPage(pageInfo){
+    this.nav.push(pageInfo.openPage);
+  }
 }
+
 
 
 

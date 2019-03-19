@@ -1,7 +1,7 @@
 import { Component, ViewChild, } from '@angular/core';
 import { IonicPage, NavController, NavParams, Slides, Events } from 'ionic-angular';
 import { CartDetail } from '../../providers/entities/entities';
-
+import { CartPage } from '../cart/cart';
 /**
  * Generated class for the ProductDetailPage page.
  *
@@ -95,6 +95,10 @@ import { CartDetail } from '../../providers/entities/entities';
  						productExist = false;
  					}
  				});
+ 			}else{
+ 				if(type == 'remove') {
+ 					productExist = false;
+ 				}
  			}
  			if (productExist) {
  				this.cartDetail.cartArray.push(productSetObj);
@@ -107,6 +111,10 @@ import { CartDetail } from '../../providers/entities/entities';
 
  			}
  		}
+ 	}
+
+ 	viewCart(){
+ 		this.navCtrl.push(CartPage);
  	}
 
  	// addProductQuantity(product){

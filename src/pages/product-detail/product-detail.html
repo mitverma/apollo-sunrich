@@ -31,9 +31,23 @@
 			<div class="next-slide" (click)="nextSlide();"></div>
 		</div>
 		<div class="product-quantity">
-			<button class="btn-yellow" (click)="addToCart(productDetailInfo, 'remove')">Remove</button>
+			<div class="clearfix">
+				<div class="f-left">
+					<span class="quantity-heading">Quantity</span>
+				</div>
+				<div class="f-right">
+					<span class="remove-product" (click)="addToCart(productDetailInfo, 'remove')" [attr.disabled]="cartDetail.cartArray.length > 0">
+						<i class="fas fa-minus"></i>
+					</span>
+					<span class="quantity-count">{{quantityCount}}</span>
+					<span class="add-product" (click)="addToCart(productDetailInfo, 'add')">
+						<i class="fas fa-plus"></i>
+					</span>
+				</div>
+			</div>
+			<!-- <button class="btn-yellow" (click)="addToCart(productDetailInfo, 'remove')">Remove</button>
 			{{quantityCount}}
-			<button class="btn-yellow" (click)="addToCart(productDetailInfo, 'add')">Add</button>
+			<button class="btn-yellow" (click)="addToCart(productDetailInfo, 'add')">Add</button> -->
 		</div>
 		<div class="product-info">
 			<h2 class="product-name">{{productDetailInfo.name}}</h2>

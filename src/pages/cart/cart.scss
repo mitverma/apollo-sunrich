@@ -1,4 +1,11 @@
 page-cart {
+
+	.clearfix {
+		overflow: auto;
+		.f-left { float: left; } 
+		.f-right { float: right; } 
+	}
+
 	.cart-list {
 		padding: 0;
 		border-radius: 10px;
@@ -64,6 +71,14 @@ page-cart {
 			img {
 				max-height: 70px;
 			}
+		}
+	}
+
+	.sub-total {
+		padding: 15px 0;
+		border-top: 1px solid #c3c3c3;
+		.total-heading, .total-cost {
+			font-size: 20px;
 		}
 	}
 }

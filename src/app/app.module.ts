@@ -12,6 +12,7 @@ import { ProductDetailPage } from '../pages/product-detail/product-detail';
 import { CartPage } from '../pages/cart/cart'; 
 import { CheckoutPage } from '../pages/checkout/checkout'; 
 import { OrdersPage } from '../pages/orders/orders'; 
+import { ProductsPage } from '../pages/products/products'; 
 
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
@@ -41,7 +42,8 @@ import { CartDetail,CheckOutEntity } from '../providers/entities/entities';
   ProductDetailPage,
   CartPage,
   CheckoutPage,
-  OrdersPage
+  OrdersPage,
+  ProductsPage
   ],
   imports: [
   BrowserModule,
@@ -63,7 +65,8 @@ import { CartDetail,CheckOutEntity } from '../providers/entities/entities';
   ProductDetailPage,
   CartPage,
   CheckoutPage,
-  OrdersPage
+  OrdersPage,
+  ProductsPage
   ],
   providers: [
   StatusBar,

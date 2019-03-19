@@ -1,3 +1,49 @@
 page-checkout {
+	.checkout-container {
+		.box-item {
+			border-radius: 0px 0px 8px 8px;
+			box-shadow: 1px 2px 3px #c5c5c5;
+			margin-bottom: 20px;
+			overflow: hidden;
+			background-color: $color-white;
+			h3 {
+				padding: 15px;
+				font-size: 18px;
+				background-color: #5a450d;
+				color: $color-white;
+				letter-spacing: 2px;
+			}
+			form {
+				padding: 15px;
+				input {
+					width: 100%;
+					padding: 8px 12px;
+					border-radius: 6px;
+					border: 1px solid #5a450d;
+					margin-bottom: 15px;
+				}
+			}
+		}
+	}
 
+	.same-has-add {
+		margin-bottom: 20px;
+		label {
+			padding: 0 10px;
+			display: block;
+			font-size: 14px;
+		}
+		input {
+			-webkit-appearance: none;
+			width: 15px;
+			height: 15px;
+			border: 1px solid #5a450d;
+			border-radius: 4px;
+			margin-right: 5px;
+			transition: all 300ms linear;
+			&:checked {
+				background-color: #5a450d;
+			}
+		}
+	}
 }
