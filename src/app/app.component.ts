@@ -5,7 +5,9 @@ import { SplashScreen } from '@ionic-native/splash-screen';
 
 import { LoginPage } from '../pages/login/login'; 
 import { OrdersPage } from '../pages/orders/orders'; 
+import { ProductsPage } from '../pages/products/products'; 
 import { HomePage } from '../pages/home/home'; 
+import { CartPage } from '../pages/cart/cart'; 
 import { AuthUser } from '../providers/entities/entities';
 import { DevicestorageProvider } from '../providers/devicestorage/devicestorage';
 
@@ -15,6 +17,7 @@ import { DevicestorageProvider } from '../providers/devicestorage/devicestorage'
 export class MyApp {
   @ViewChild(Nav) nav: Nav;
   rootPage:any = LoginPage;
+  menuList: any = [];
 
   constructor(public menu: MenuController,platform: Platform, statusBar: StatusBar, splashScreen: SplashScreen, public authUser: AuthUser, public deviceStorage: DevicestorageProvider) {
     platform.ready().then(() => {
@@ -35,6 +38,33 @@ export class MyApp {
         }
       })
       // device storage set value and get value end
+
+
+      // pages
+      this.menuList = [
+      {
+        "title": "Home",
+        "icon": "fa-home",
+        "openPage": HomePage
+      },{
+        "title": "Products",
+        "icon": "fa-home",
+        "openPage": ProductsPage
+      },{
+        "title": "Orders",
+        "icon": "fa-shopping-bag",
+        "openPage": OrdersPage
+      },{
+        "title": "Wishlist",
+        "icon": "fa-heart",
+        "openPage": OrdersPage
+      },{
+        "title": "Cart",
+        "icon": "fa-shopping-cart",
+        "openPage": CartPage
+      }
+      ];
+      // pages end
     });
   }
 
@@ -47,6 +77,7 @@ export class MyApp {
     })
   }
 }
+
 
 
 // query {

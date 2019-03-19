@@ -32,7 +32,9 @@ import { Injectable } from '@angular/core';
   @Injectable()
   export class CheckOutEntity {
     checkOutList: any = [];
+    checkoutTotal: number;
     constructor(){
       this.checkOutList = [];
+      this.checkoutTotal = 0;
     }
   }

@@ -16,18 +16,20 @@ import { AuthUser } from '../../providers/entities/entities';
 
  const productQuery = gql`
  query {
- 	products{
- 		edges{
+ 	products(first: 100){
+ 		edges {
  			node {
- 				id name description thumbnailUrl url seoDescription price {
- 					localized amount
+ 				id name description seoDescription images {
+ 					id alt url
  				}
- 				images {
- 					edges {
- 						node {
- 							alt id url sortOrder
- 						}
- 					}
+ 				price {
+ 					currency amount localized
+ 				}
+ 				variants {
+ 					id sku name quantity quantityAllocated 
+ 				}
+ 				thumbnail {
+ 					url alt
  				}
  			}
  		}

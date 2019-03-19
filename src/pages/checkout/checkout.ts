@@ -139,7 +139,7 @@ import { Apollo } from 'apollo-angular';
  			`, variables: {
  				checkoutId: checkoutId,
  				gateway: "COD",
- 				amount: "1000",
+ 				amount: this.checkoutEntity.checkoutTotal,
  				token: "",
  				billingAddress: {
  					firstName: this.billingDetail.firstName,

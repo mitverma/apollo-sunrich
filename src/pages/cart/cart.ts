@@ -38,6 +38,7 @@ import { CheckoutPage } from '../checkout/checkout';
  			}
  			this.checkoutEntity.checkOutList.push(lineObj);
  		}
+ 		this.checkoutEntity.checkoutTotal = this.subTotal;
  		console.log(this.checkoutEntity.checkOutList, 'checkoutLines');
 
  		Object.assign(this.checkoutEntity.checkOutList, this.checkoutEntity.checkOutList);
