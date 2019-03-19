@@ -19,8 +19,10 @@ import { CheckoutPage } from '../checkout/checkout';
  })
  export class CartPage {
  	cartList: any = [];
+ 	subTotal: number;
  	constructor(public navCtrl: NavController, public navParams: NavParams, public cartDetail: CartDetail, public checkoutEntity : CheckOutEntity,) {
  		this.cartList = this.cartDetail.cartArray;
+ 		this.getCartSubTotal();
  	}
 
  	ionViewDidLoad() {
@@ -51,6 +53,7 @@ import { CheckoutPage } from '../checkout/checkout';
  					if (type == 'add') {
  						list.productQuantity = ++list.productQuantity;
  						list.productTotalPrice = list.productPrice * list.productQuantity;
+ 						this.getCartSubTotal();
  					}
  					// add functionality end
 
@@ -62,11 +65,20 @@ import { CheckoutPage } from '../checkout/checkout';
  							--list.productQuantity;
  							list.productTotalPrice = list.productPrice * list.productQuantity;
  						}
+
+ 						this.getCartSubTotal();
  					}
  					// remove functionality end
  				}
  			})
  		}
  	}
+
+ 	// get cart sub total 
+ 	getCartSubTotal(){
+ 		this.subTotal =  this.cartList.map(res=> res.productTotalPrice).reduce((prev,next)=> prev + next);
+ 		console.log(this.subTotal, 'subtotal');
+ 	}
+ 	// get cart sub total end
 
  }

@@ -40,5 +40,15 @@
 			</ion-col>
 		</ion-row>
 	</ion-grid>
+	<div class="sub-total">
+		<div class="clearfix">
+			<div class="f-left">
+				<span>SubTotal</span>
+			</div>
+			<div class="r-left">
+				{{subTotal}}
+			</div>
+		</div>
+	</div>
 	<button class="btn-yellow" (click)="checkout()">Checkout</button>
 </ion-content>
