@@ -17,7 +17,7 @@
 	<div class="checkout-container">
 		<div class="box-item">
 			<h3>Shipping Address</h3>
-			<form action="" >
+			<form #shippingForm="ngForm" >
 				<input type="text" [(ngModel)]="shippingDetail.firstName" name="firstName" placeholder="firstName" required>
 				<input type="text" [(ngModel)]="shippingDetail.lastName" name="lastName" placeholder="lastName" required>
 				<input type="text" [(ngModel)]="shippingDetail.companyName" name="companyName" placeholder="companyName" required>
@@ -41,7 +41,7 @@
 
 		<div class="box-item">
 			<h3>Billing Address</h3>
-			<form >
+			<form #billingForm="ngForm" >
 				<input type="text" [(ngModel)]="billingDetail.firstName" name="firstName" placeholder="firstName" required>
 				<input type="text" [(ngModel)]="billingDetail.lastName" name="lastName" placeholder="lastName" required>
 				<input type="text" [(ngModel)]="billingDetail.companyName" name="companyName" placeholder="companyName" required>
@@ -60,7 +60,7 @@
 			COD
 		</div>
 		<div class="">
-			<button class="btn btn-yellow"  (click)="placeholder();">Place Order</button>
+			<button class="btn btn-yellow" (click)="placeholder();">Place Order</button>
 		</div>
 	</div>
 	

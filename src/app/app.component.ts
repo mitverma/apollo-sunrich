@@ -6,6 +6,7 @@ import { SplashScreen } from '@ionic-native/splash-screen';
 import { LoginPage } from '../pages/login/login'; 
 import { OrdersPage } from '../pages/orders/orders'; 
 import { ProductsPage } from '../pages/products/products'; 
+import { WishlistPage } from '../pages/wishlist/wishlist'; 
 import { HomePage } from '../pages/home/home'; 
 import { CartPage } from '../pages/cart/cart'; 
 import { AuthUser } from '../providers/entities/entities';
@@ -57,7 +58,7 @@ export class MyApp {
       },{
         "title": "Wishlist",
         "icon": "fa-heart",
-        "openPage": OrdersPage
+        "openPage": WishlistPage
       },{
         "title": "Cart",
         "icon": "fa-shopping-cart",
@@ -78,19 +79,11 @@ export class MyApp {
   }
 
   openPage(pageInfo){
-    this.nav.push(pageInfo.openPage);
+    if (pageInfo && pageInfo.title == 'Home') {
+      this.nav.setRoot(pageInfo.openPage);
+    }else {
+      this.nav.push(pageInfo.openPage);
+    }
   }
 }
 
-
-
-
-// query {
-  //   orders(user: "VXNlcjo0OA=="){
-    //     edges {
-      //       node {
-        //         id status
-        //       }
-        //     }
-        //   }
-        // }

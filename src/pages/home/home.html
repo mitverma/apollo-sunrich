@@ -24,23 +24,26 @@
   <div class="featured-product">
     <!-- <button (click)="getOrders();">orders new</button>
       <button (click)="placeOrder();">Place order</button> -->
-    <h4 class="heading">Featured Products</h4>
-    <ion-grid>
-      <ion-row>
-        <ion-col col-6 *ngFor="let list of productList | slice:0:4">
-         <div class="product-container" (click)="productDetail(list);">
-          <div class="product-img-holder">
-            <img src="{{list.node.thumbnail.url}}" alt="" class="img-fluid opac-zero">
+      <h4 class="heading">Featured Products</h4>
+      <ion-grid>
+        <ion-row>
+          <ion-col col-6 *ngFor="let list of productList | slice:0:4">
+           <div class="product-container" (click)="productDetail(list);">
+            <div class="product-img-holder">
+              <img src="{{list.node.thumbnail.url}}" alt="" class="img-fluid opac-zero">
+            </div>
+            <div class="product-detail">
+              <h5>{{list.node.name}}</h5>
+              <span>{{list.node.price.localized}}</span>
+              <span (click)="addToWishlist(list)">
+                <i class="fa-heart" [ngClass]="{'fas': toggledToList && selectedItem.id == list.id, 'far': !toggledToList && selectedItem.id == list.id}" ></i>
+              </span>
+            </div>
           </div>
-          <div class="product-detail">
-            <h5>{{list.node.name}}</h5>
-            <span>{{list.node.price.localized}}</span>
-          </div>
-        </div>
-      </ion-col>
-    </ion-row>
-  </ion-grid>
-</div>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </div>
   <!-- <button ion-button secondary menuToggle>Toggle Menu</button>
     <button ion-button (click)="registerPage()">Open page</button> -->
   </ion-content>

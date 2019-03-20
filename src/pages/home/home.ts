@@ -6,7 +6,7 @@ import { UsersQuery, UserSummaryFragment } from '../../__generated__';
 import { Observable } from 'rxjs/Observable';
 import { ProductDetailPage } from '../product-detail/product-detail';
 import { CartPage } from '../cart/cart';
-import { CartDetail } from '../../providers/entities/entities';
+import { CartDetail, WishListEntity } from '../../providers/entities/entities';
 
 
 const productQuery = gql`
@@ -40,12 +40,14 @@ export class HomePage {
   @ViewChild(Slides) slides: Slides;
   users$: Observable<UserSummaryFragment[]>;
   productList: any = [];
-
+  toggledToList: boolean = false;
+  selectedItem: any = {};
   constructor(
     public navCtrl: NavController,
     private apollo: Apollo,
     public cartDetail: CartDetail,
     public events: Events,
+    public wishlistEntity: WishListEntity,
     ) {
     // this.users$ = this.apollo.query<UsersQuery>({ query })
     // .map(({ data }) => data.allUsers);
@@ -95,6 +97,21 @@ export class HomePage {
       console.log(data, 'data');
     })
   }
+
+  // add to wishlist
+  addToWishlist(productDetail){
+    this.selectedItem = productDetail;
+    if (!this.toggledToList) {
+      this.wishlistEntity.wishlist.push(productDetail);
+      this.toggledToList = true;
+    }else {
+      let getIndexToRemove = this.wishlistEntity.wishlist.map(res=> res.variants.id).indexOf(productDetail.variants.id);
+      this.wishlistEntity.wishlist.splice(getIndexToRemove, 1);
+
+      this.toggledToList = false;
+    }
+  }
+  // add to wishlist end
 
   // placeOrder(){
     //   this.apollo.mutate({

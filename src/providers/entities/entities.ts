@@ -38,3 +38,11 @@ import { Injectable } from '@angular/core';
       this.checkoutTotal = 0;
     }
   }
+
+  @Injectable()
+  export class WishListEntity {
+    wishlist: any = [];
+    constructor(){
+      this.wishlist = [];
+    }
+  }
