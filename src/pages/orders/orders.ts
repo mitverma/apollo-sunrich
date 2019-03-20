@@ -30,18 +30,19 @@ import { Apollo } from 'apollo-angular';
  				orders(first: 100){
  					edges {
  						node {
- 							id created status  lines {
- 								id  productName quantity thumbnail {
+ 							lines {
+ 								id productName quantity thumbnail {
  									url alt
- 								}
+ 								}  
  							}
+ 							id created status trackingClientId 
  						}
  					}
  				}
  			}
  			`, variables: null}).valueChanges.subscribe((data: any)=>{
+ 				console.log(data, 'order list');
  				this.ordersList = data.data.orders.edges;
- 				console.log(this.ordersList, 'order list');
  			})
  		}
 

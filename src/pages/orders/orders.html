@@ -14,9 +14,44 @@
 
 
 <ion-content padding>
-	<div *ngFor="let list of ordersList">
-		<div class="" *ngFor="let line of list.node.lines">
-			<p>{{line.productName}}</p>
+	<div class="order-item-container" *ngFor="let list of ordersList">
+		<div class="order-header">
+			<ion-grid>
+				<ion-row>
+					<ion-col col-2>
+						<div class="img-holder">
+							<img src="{{list.node.lines[0].thumbnail.url}}" alt="" class="img-fluid">
+						</div>
+					</ion-col>
+					<ion-col col-10>
+						<h3 class="order-name">{{list.node.lines[0].productName}}</h3>
+					</ion-col>
+				</ion-row>
+			</ion-grid>
+		</div>
+		<div class="order-main">
+			<div class="sub-heading">
+				<span>Created On</span>
+				<h5>{{list.node.created | date : 'dd MM yyyy hh:mm:a'}}</h5>
+			</div>
+			<div class="sub-heading">
+				<span>Items</span>
+				<h5>{{list.node.lines[0].productName}}</h5>
+			</div>
+			<div class="sub-heading">
+				<span>Quantity</span>
+				<h5>{{list.node.lines[0].quantity}}</h5>
+			</div>
+		</div>
+		<div class="order-footer">
+			<div class="clearfix">
+				<div class="f-left">
+					<span>Delivery Status</span>
+				</div>
+				<div class="f-right">
+					<span>{{list.node.status == 'UNFULFILLED' ?  'Pending': 'Deliverd'}}</span>
+				</div>
+			</div>
 		</div>
 	</div>
 </ion-content>

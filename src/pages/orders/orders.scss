@@ -1,3 +1,33 @@
 page-orders {
+	.clearfix {
+		overflow: auto;
+		.f-left { float: left;  }
+		.f-right { float: right;  }
+	}
+	.order-item-container {
+		padding: 10px;
+		border-radius: 8px;
+		box-shadow: 0px 2px 3px #cdcdcd;
+		margin-bottom: 20px;
+		background-color: $color-white;
+		.order-header {
+			.order-name {
+				font-size: 12px;
+			}
+		}
 
+		.order-main {
+			border-top: 1px solid #c3c3c3;
+			border-bottom: 1px solid #c3c3c3;
+			.sub-heading {
+				span {
+					font-size: 12px;
+				}
+				h5 {
+					margin: 0;
+					font-size: 15px;
+				}
+			}
+		}
+	}
 }
