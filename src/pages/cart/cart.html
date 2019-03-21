@@ -41,7 +41,7 @@
 			</ion-col>
 		</ion-row>
 	</ion-grid>
-	<div class="sub-total">
+	<div class="sub-total" *ngIf="cartList.length">
 		<div class="clearfix">
 			<div class="f-left">
 				<span class="total-heading">SubTotal</span>
@@ -52,5 +52,5 @@
 			</div>
 		</div>
 	</div>
-	<button class="btn-yellow" (click)="checkout()">Checkout</button>
+	<button class="btn-yellow" *ngIf="cartList.length" (click)="checkout()">Checkout</button>
 </ion-content>

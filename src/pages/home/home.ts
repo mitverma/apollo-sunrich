@@ -41,7 +41,7 @@ export class HomePage {
   users$: Observable<UserSummaryFragment[]>;
   productList: any = [];
   toggledToList: boolean = false;
-  selectedItem: any = {};
+  selectedItemId: any = -1;
   constructor(
     public navCtrl: NavController,
     private apollo: Apollo,
@@ -64,6 +64,16 @@ export class HomePage {
     this.events.subscribe('cartDetail', (data)=>{
       if (data) {
         this.cartDetail = data;
+      }
+    });
+
+    this.events.subscribe('wishlistRemoved', (data)=>{
+      if (data) {
+        this.productList.forEach(list=>{
+          if (list.node.id == data.id) {
+            list.node.itemWishlisted = false;
+          }
+        })
       }
     })
   }
@@ -100,60 +110,40 @@ export class HomePage {
 
   // add to wishlist
   addToWishlist(productDetail){
-    this.selectedItem = productDetail;
-    if (!this.toggledToList) {
-      this.wishlistEntity.wishlist.push(productDetail);
-      this.toggledToList = true;
-    }else {
-      let getIndexToRemove = this.wishlistEntity.wishlist.map(res=> res.variants.id).indexOf(productDetail.variants.id);
-      this.wishlistEntity.wishlist.splice(getIndexToRemove, 1);
-
-      this.toggledToList = false;
+    let addToWishlist = true;
+    if (this.wishlistEntity.wishlist.length) {
+      this.wishlistEntity.wishlist.forEach((list, index)=>{
+        if (list.id == productDetail.id) {
+          this.wishlistEntity.wishlist.splice(index, 1);
+          addToWishlist = false;
+          this.productList.forEach((list, index)=>{
+            if (list.node.id == productDetail.id) {
+              list.node.itemWishlisted = false;
+            }
+          });
+        }
+      });        
     }
+    if (addToWishlist) {
+      this.wishlistEntity.wishlist.push(productDetail);
+      this.productList.forEach((list, index)=>{
+        if (list.node.id == productDetail.id) {
+          list.node.itemWishlisted = true;
+        }
+      });
+    }
+    console.log(this.wishlistEntity.wishlist, 'wishlist', this.productList, 'product list');
   }
   // add to wishlist end
 
-  // placeOrder(){
-    //   this.apollo.mutate({
-      //     mutation: gql`
-      //     mutation draftOrderCreate(userEmail: String!, quantity: Int!, variantId: String!){
-        //       draftOrderCreate(input: {
-          //         userEmail: $userEmail,
-          //         lines: [
-          //         {
-            //           quantity: $quantity,
-            //           variantId: $variantId,
-            //         }
-            //         ]
-            //       }){
-              //         errors { field message }
-              //         order {
-                //           id trackingClientId
-                //         }
-                //       }
-                //     }
-                //     `,variables: {
-                  //       userEmail: "amit.verma@oneinsure.com",
-                  //       lines: [
-                  //       {
-                    //         quantity: 1,
-                    //         variantId:  "UHJvZHVjdDo1",
-                    //       }
-                    //       ]
-                    //     }
-                    //   }).subscribe(data=>{
-
-                      //   })
-                      // }
-
-                      viewCart(){
-                        this.navCtrl.push(CartPage);
-                      }
-                    }
+  viewCart(){
+    this.navCtrl.push(CartPage);
+  }
+}
 
 
 
 
-                    // things to be done
+// things to be done
 
-                    // https://yalantis.com/blog/top-design-solutions-for-ecommerce-apps/
+// https://yalantis.com/blog/top-design-solutions-for-ecommerce-apps/

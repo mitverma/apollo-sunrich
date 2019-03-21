@@ -6,13 +6,34 @@
 -->
 <ion-header>
 
-  <ion-navbar>
-    <ion-title>wishlist</ion-title>
-  </ion-navbar>
+	<ion-navbar>
+		<ion-title>wishlist</ion-title>
+	</ion-navbar>
 
 </ion-header>
 
 
 <ion-content padding>
-
+	<div class="wishlist-list-container">
+		<ion-grid>
+			<ion-row>
+				<ion-col col-6 *ngFor="let list of wishlistEntity.wishlist">
+					<div class="product-container">
+						<div (click)="viewProductDetail(list)">
+							<div class="product-img-holder">
+								<img src="{{list.thumbnail.url}}" alt="" class="img-fluid opac-zero">
+							</div>
+							<div class="product-detail">
+								<h5>{{list.name}}</h5>
+								<span>{{list.price.localized}}</span>
+							</div>
+						</div>
+						<span class="wishlist-icon" (click)="removeFromlist(list)">
+							<i class="fas fa-trash"></i>
+						</span>				
+					</div>
+				</ion-col>
+			</ion-row>
+		</ion-grid>
+	</div>
 </ion-content>

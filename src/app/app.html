@@ -6,14 +6,14 @@
 		</ion-toolbar>
 	</ion-header>
 
-	<ion-content>
+	<ion-content class="menu-content">
 		<ion-list>
 			<button menuClose ion-item *ngFor="let list of menuList" (click)="openPage(list)">
-				<i class="fas {{list.icon}}"></i>
+				<i class="menu-icon fas {{list.icon}}"></i>
 				<span>{{list.title}}</span>
 			</button>
 			<button ion-item (click)="logout();">
-				<i class="fas fa-power-off"></i>
+				<i class="menu-icon fas fa-power-off"></i>
 				<span>Logout</span>
 			</button>
 		</ion-list>

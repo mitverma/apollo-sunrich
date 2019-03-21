@@ -16,8 +16,15 @@
  automatically applied to the <body> element in the app.*/
 
  @import url(https://use.fontawesome.com/releases/v5.7.2/css/all.css); 
+ @import url(https://fonts.googleapis.com/css?family=Lato); 
  // @import "../font-awesome.css"; 
 
+ body {
+ 	font-family: 'Lato', sans-serif;
+ 	ion-app.md {
+ 		font-family: 'Lato', sans-serif;
+ 	}
+ }
 
  /*colors*/
  $color-button : #daaa2c;
@@ -100,4 +107,26 @@
  		background-color: transparent;
  	}
  	/*content background to transparent end*/
+
+ 	// menu content
+ 	.menu-content {
+ 		.item-md {
+ 			padding: 0;
+ 			.item-inner {
+ 				padding: 0px 10px;
+ 				.menu-icon {
+ 					font-size: 18px;
+ 					margin-right: 10px;
+ 					color: $color-brown;
+ 					+ span {
+ 						font-size: 18px;
+ 					}
+ 				}
+ 			}
+ 		}
+ 	}
+ 	// menu content end
  }
+
+ // https://dribbble.com/shots/6120171-Groceries-Shopping-App-Interaction
+ // https://jsfiddle.net/geocodezip/d5ncce6h/

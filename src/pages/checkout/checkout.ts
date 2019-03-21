@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import gql from 'graphql-tag';
-import { CheckOutEntity } from '../../providers/entities/entities';
+import { CheckOutEntity , AuthUser } from '../../providers/entities/entities';
 import { Apollo } from 'apollo-angular';
 /**
  * Generated class for the CheckoutPage page.
@@ -19,7 +19,14 @@ import { Apollo } from 'apollo-angular';
  	shippingDetail: any;
  	billingDetail: any;
  	addressSame: boolean = false;
- 	constructor(public navCtrl: NavController, public navParams: NavParams, public apollo: Apollo, public checkoutEntity: CheckOutEntity) {
+ 	thankyouSection: boolean = false;
+ 	constructor(public navCtrl: NavController,
+ 		public navParams: NavParams, 
+ 		public apollo: Apollo, 
+ 		public checkoutEntity: CheckOutEntity,
+ 		public authUser: AuthUser) {
+
+ 		console.log(this.authUser, 'auth user');
  		this.shippingDetail = {
  			firstName: '',
  			lastName: '',
@@ -74,7 +81,7 @@ import { Apollo } from 'apollo-angular';
  			}
  			`,variables: {
  				lines: this.checkoutEntity.checkOutList,
- 				email: "amit.verma@oneinsure.com",
+ 				email: this.authUser.email,
  				shippingAddress: {
  					firstName: this.shippingDetail.firstName,
  					lastName: this.shippingDetail.lastName,
@@ -85,7 +92,8 @@ import { Apollo } from 'apollo-angular';
  					cityArea: this.shippingDetail.cityArea,
  					postalCode: this.shippingDetail.postalCode,
  					country: "IN",
- 					countryArea: this.shippingDetail.countryArea,
+ 					// countryArea: this.shippingDetail.countryArea,
+ 					countryArea: "Maharashtra",
  					phone: '+91'+this.shippingDetail.phone,
  				},
  				billingAddress: {
@@ -98,7 +106,8 @@ import { Apollo } from 'apollo-angular';
  					cityArea: this.billingDetail.cityArea,
  					postalCode: this.billingDetail.postalCode,
  					country: "IN",
- 					countryArea: this.billingDetail.countryArea,
+ 					// countryArea: this.billingDetail.countryArea,
+ 					countryArea: "Maharashtra",
  					phone: '+91'+this.billingDetail.phone,
  				}
  			}
@@ -152,7 +161,8 @@ import { Apollo } from 'apollo-angular';
  					cityArea: this.billingDetail.cityArea,
  					postalCode: this.billingDetail.postalCode,
  					country: "IN",
- 					countryArea: this.billingDetail.countryArea,
+ 					// countryArea: this.billingDetail.countryArea,
+ 					countryArea: "Maharashtra",
  					phone: '+91'+this.billingDetail.phone,
  				}
  			}
@@ -179,6 +189,9 @@ import { Apollo } from 'apollo-angular';
  			}
  		}).subscribe((data: any)=>{
  			console.log(data, 'data checkout completed');
+ 			if (data.data.checkoutComplete.order.id) {
+ 				this.thankyouSection = true;
+ 			}
  		})
  	}
 

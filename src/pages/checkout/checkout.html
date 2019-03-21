@@ -14,7 +14,7 @@
 
 
 <ion-content padding>
-	<div class="checkout-container">
+	<div class="checkout-container" *ngIf="!thankyouSection">
 		<div class="box-item">
 			<h3>Shipping Address</h3>
 			<form #shippingForm="ngForm" >
@@ -55,14 +55,18 @@
 				<input type="text" [(ngModel)]="billingDetail.phone" name="phone" placeholder="phone" required> 
 			</form>
 		</div>
-		<div class="box-item">
+		<div class="box-item payment-mode">
 			<h3>Payment Mode</h3>
-			COD
+			<p class="note">Currently we are taking all orders as Cash On Delivery</p>
 		</div>
 
 		<div class="">
-			<button class="btn btn-yellow" [disabled]="!shippingForm.valid && !billingForm.valid" (click)="placeholder();">Place Order</button>
+			<button class="btn btn-yellow" [disabled]="!shippingForm.valid && !billingForm.valid" (click)="placeOrder();">Place Order</button>
 		</div>
+	</div>
+
+	<div class="thankyou-section" *ngIf="thankyouSection">
+		<p>Thank you shopping with us your ordered has been done successfully.</p>
 	</div>
 	
 	

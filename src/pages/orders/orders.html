@@ -31,8 +31,8 @@
 		</div>
 		<div class="order-main">
 			<div class="sub-heading">
-				<span>Created On</span>
-				<h5>{{list.node.created | date : 'dd MM yyyy hh:mm:a'}}</h5>
+				<span>Ordered On</span>
+				<h5>{{list.node.created | date : 'dd-MMM-yyyy hh:mm:a'}}</h5>
 			</div>
 			<div class="sub-heading">
 				<span>Items</span>
@@ -46,7 +46,7 @@
 		<div class="order-footer">
 			<div class="clearfix">
 				<div class="f-left">
-					<span>Delivery Status</span>
+					<span class="deilvery-head">Delivery Status</span>
 				</div>
 				<div class="f-right">
 					<span>{{list.node.status == 'UNFULFILLED' ?  'Pending': 'Deliverd'}}</span>

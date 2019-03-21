@@ -77,8 +77,12 @@ import { CheckoutPage } from '../checkout/checkout';
 
  	// get cart sub total 
  	getCartSubTotal(){
- 		this.subTotal =  this.cartList.map(res=> res.productTotalPrice).reduce((prev,next)=> prev + next);
- 		console.log(this.subTotal, 'subtotal');
+ 		if (this.cartList.length) {
+ 			this.subTotal =  this.cartList.map(res=> res.productTotalPrice).reduce((prev,next)=> prev + next);
+ 			console.log(this.subTotal, 'subtotal');
+ 		}else{
+ 			this.subTotal = 0;
+ 		}
  	}
  	// get cart sub total end
 

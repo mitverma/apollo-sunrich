@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, Events } from 'ionic-angular';
+import { WishListEntity } from '../../providers/entities/entities'
+import { ProductDetailPage } from '../product-detail/product-detail'
 
 /**
  * Generated class for the WishlistPage page.
@@ -8,18 +10,33 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
  * Ionic pages and navigation.
  */
 
-@IonicPage()
-@Component({
-  selector: 'page-wishlist',
-  templateUrl: 'wishlist.html',
-})
-export class WishlistPage {
+ @IonicPage()
+ @Component({
+ 	selector: 'page-wishlist',
+ 	templateUrl: 'wishlist.html',
+ })
+ export class WishlistPage {
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
-  }
+ 	constructor(public navCtrl: NavController, public navParams: NavParams, 
+ 		public events: Events, public wishlistEntity: WishListEntity) {
+ 	}
 
-  ionViewDidLoad() {
-    console.log('ionViewDidLoad WishlistPage');
-  }
+ 	ionViewDidLoad() {
+ 		console.log('ionViewDidLoad WishlistPage');
+ 	}
 
-}
+ 	removeFromlist(list){
+ 		let getIndex = this.wishlistEntity.wishlist.map(res=>res.id).indexOf(list.id);
+ 		this.wishlistEntity.wishlist.splice(getIndex, 1);
+
+ 		this.events.publish('wishlistRemoved', list);
+ 	}
+
+ 	viewProductDetail(productInfo){
+ 		let node = {
+ 			node: productInfo
+ 		};
+ 		this.navCtrl.push(ProductDetailPage, node);
+ 	}
+
+ }
