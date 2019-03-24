@@ -26,11 +26,13 @@ page-cart {
 			padding: 10px;
 			h4 {
 				margin: 0;
+				font-weight: 700;
 			}
 			h5 {
 				margin: 10px 0;
 				font-weight: 400;
 				font-size: 12px;
+				color: #7d7d7d;
 			}
 		}
 		.product-add, .product-remove {
@@ -41,27 +43,29 @@ page-cart {
 			text-align: center;
 			line-height: 18px;
 			border-radius: 100%;
-			font-size: 14px;
-			font-weight: 500;
-			color: #fff;
+			font-size: 16px;
+			font-weight: 700;
+			color: $color-black;
 		}
-		.product-remove {
-			width: 18px;
-			height: 18px;
-			background-color: $color-brown;
-			display: inline-block;
-			text-align: center;
-			line-height: 16px;
-			border-radius: 100%;
-			font-size: 17px;
-			font-weight: 500;
-			color: #fff;
-		}
-		.product-quantity {
-			margin-top: 5px;
-		}
+		// .product-remove {
+		// 	width: 18px;
+		// 	height: 18px;
+		// 	background-color: $color-brown;
+		// 	display: inline-block;
+		// 	text-align: center;
+		// 	line-height: 16px;
+		// 	border-radius: 100%;
+		// 	font-size: 17px;
+		// 	font-weight: 700;
+		// 	color: $color-black;
+		// }
+		// .product-quantity {
+		// 	margin-top: 5px;
+		// }
 		.product-prize {
 			font-size: 20px;
+			font-weight: 700;
+			color:#7d7d7d;
 		}
 		.product-img-container {
 			height: 100%;

@@ -3,13 +3,19 @@ page-products {
 		padding: 0 !important;
 	}
 	.products-list {
+		[col-6]:nth-child(even){
+			.product-container {
+				min-height: 240px;
+				max-height: 240px;
+			}
+		}
 		.product-container {
-			min-height: 195px;
-			max-height: 195px;
+			min-height: 210px;
+			max-height: 210px;
 			border-radius: 8px;
-			box-shadow: 0px 3px 8px #bcbcbc;
-			margin: 0 5px 10px;
-			background-color: #c6c5cb;
+			box-shadow: 0px 2px 5px #bcbcbc;
+			margin: 0 5px 20px;
+			background-color: $color-white;
 			position: relative; 
 			z-index: 1;  
 			overflow: hidden;
@@ -30,11 +36,14 @@ page-products {
 				bottom: 0;
 				background-color: #fff;
 				h5 {
-					margin-bottom: 5px;
-					font-size: 14px;
+					margin-bottom: 10px;
+					font-size: 20px;
+					font-weight: 700;
 				}
 				.price {
-					font-size: 12px;
+					font-size: 14px;
+					color: #7d7d7d;
+					font-weight: 700;
 				}
 			}
 			.wishlist-icon {

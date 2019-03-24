@@ -12,7 +12,12 @@ page-orders {
 		background-color: $color-white;
 		.order-header {
 			.order-name {
+				margin: 0px 0px 5px;
 				font-size: 16px;
+				font-weight: 700;
+			}
+			.total-cost {
+				color: #7d7d7d;
 			}
 			[col-2], [col-10] { padding: 0; }
 			.img-holder {

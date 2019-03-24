@@ -26,8 +26,8 @@
 				<h5>{{cart.productDescp}}</h5>
 				<div class="clearfix">
 					<div class="f-left product-quantity">
+						<span class="product-remove" (click)="cartQuantity(cart, 'remove')">-</span>
 						<span class="quantity">							
-							<span class="product-remove" (click)="cartQuantity(cart, 'remove')">-</span>
 							{{cart.productQuantity}}
 						</span>
 						<span class="product-add" (click)="cartQuantity(cart, 'add')">+</span>
@@ -52,5 +52,7 @@
 			</div>
 		</div>
 	</div>
-	<button class="btn-yellow" *ngIf="cartList.length" (click)="checkout()">Checkout</button>
+	<div class="text-center">
+		<button class="btn-yellow btn-round" *ngIf="cartList.length" (click)="checkout()">Checkout</button>
+	</div>
 </ion-content>

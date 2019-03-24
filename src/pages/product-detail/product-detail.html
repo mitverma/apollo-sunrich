@@ -30,30 +30,29 @@
 			<div class="previous-slide" (click)="previousSlide();"></div>
 			<div class="next-slide" (click)="nextSlide();"></div>
 		</div>
-		<div class="product-quantity">
-			<div class="clearfix">
-				<div class="f-left">
-					<span class="quantity-heading">Quantity</span>
-				</div>
-				<div class="f-right">
-					<span class="remove-product" (click)="addToCart(productDetailInfo, 'remove')" [attr.disabled]="cartDetail.cartArray.length > 0">
-						<i class="fas fa-minus"></i>
-					</span>
-					<span class="quantity-count">{{quantityCount}}</span>
-					<span class="add-product" (click)="addToCart(productDetailInfo, 'add')">
-						<i class="fas fa-plus"></i>
-					</span>
-				</div>
-			</div>
-			<!-- <button class="btn-yellow" (click)="addToCart(productDetailInfo, 'remove')">Remove</button>
-			{{quantityCount}}
-			<button class="btn-yellow" (click)="addToCart(productDetailInfo, 'add')">Add</button> -->
-		</div>
 		<div class="product-info">
 			<h2 class="product-name">{{productDetailInfo.name}}</h2>
-			<h6 class="product-price">{{productDetailInfo.price.localized}}</h6>
-			<p class="product-descp" [innerHTML]="productDetailInfo.description"></p>
-		</div>
+			<div class="clearfix">
+				<div class="f-left">
+					<h6 class="product-price">{{productDetailInfo.price.localized}}</h6>
+				</div>
+				<div class="f-right">					
+					<div class="product-quantity">
+						<span class="remove-product" (click)="addToCart(productDetailInfo, 'remove')" [attr.disabled]="cartDetail.cartArray.length > 0">
+							<i class="fas fa-minus"></i>
+						</span>
+						<span class="quantity-count">{{quantityCount}}</span>
+						<span class="add-product" (click)="addToCart(productDetailInfo, 'add')">
+							<i class="fas fa-plus"></i>
+						</span>
+					</div>
+				</div>
+			</div>
+			<div class="descp">
+				<h3>Product Description</h3>
+				<p class="product-descp" [innerHTML]="productDetailInfo.description"></p>
+			</div>
+		</div>	
 		<div class="button-group">
 			<button ion-button round class="btn-yellow" (click)="addToCart(productDetailInfo, '')">Add To Cart</button>
 			<button ion-button round class="btn-yellow">Buy Now</button>

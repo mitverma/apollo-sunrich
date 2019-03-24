@@ -16,13 +16,16 @@
  automatically applied to the <body> element in the app.*/
 
  @import url(https://use.fontawesome.com/releases/v5.7.2/css/all.css); 
- @import url(https://fonts.googleapis.com/css?family=Lato); 
+ // @import url(https://fonts.googleapis.com/css?family=Lato); 
+ @import url(https://fonts.googleapis.com/css?family=Josefin+Sans); 
  // @import "../font-awesome.css"; 
 
  body {
- 	font-family: 'Lato', sans-serif;
+ 	// font-family: 'Lato', sans-serif;
+ 	font-family: 'Josefin Sans', sans-serif;
  	ion-app.md {
- 		font-family: 'Lato', sans-serif;
+ 		// font-family: 'Lato', sans-serif;
+ 		font-family: 'Josefin Sans', sans-serif;
  	}
  }
 
@@ -31,7 +34,8 @@
  $color-black: #000;
  $color-white: #fff;
  /*$color-brown: #a77c09;*/
- $color-brown: #c18d00;
+ // $color-brown: #c18d00;
+ $color-brown: #ffbc41;
  // $color-brown: #daaa2c;
  $color-greenblack: #292f28;
  $color-darkgrey: gray;
@@ -41,14 +45,15 @@
 
  /*classes*/
  .btn-yellow {
- 	padding: 12px 40px;
+ 	padding: 12px 40px 10px;
  	height: 40px;
  	background-color: $color-brown;
- 	color: #fff;
- 	box-shadow: 0px 3px 4px #7b7b7b;
+ 	color: $color-black;
+ 	font-weight: 700;
+ 	letter-spacing: 1px;
  	&:hover:not(.disable-hover) {
  		background-color: $color-brown;
- 		color: #fff;
+ 		color: $color-black;
  	}
  }
 
@@ -70,7 +75,8 @@
 
  ng-component {
  	/*background-image: linear-gradient(to right, #e0e0e1, #f2f2f4);*/
- 	background-image: linear-gradient(to right, #e0e0e1, #f5f5f5);
+ 	// background-image: linear-gradient(to right, #e0e0e1, #f5f5f5);
+ 	background-color: #f6f6f6; 
 
  	/*header set to background transparent*/
  	.toolbar-background-md {
@@ -80,18 +86,21 @@
  	/*header set to background transparent end*/
 
  	ion-navbar.toolbar {
- 		box-shadow: 0px 2px 3px rgba(0,0,0,.35);
+ 		// box-shadow: 0px 2px 3px rgba(0,0,0,.35);
+ 		box-shadow: none;
  	}
 
  	.toolbar-title-md {
  		padding: 0px 5px;
- 		color: #fff;
+ 		color: $color-black;
+ 		text-transform: capitalize;
  	}
 
  	.bar-button-default-md {
- 		color: #fff;
+ 		color: $color-black;
+ 		font-weight: 700;
  		&:hover:not(.disable-hover) {
- 			color: #fff;
+ 			color: $color-black;
  		}
  	}
 
@@ -99,7 +108,10 @@
  		order: 0;
  		font-size: 22px;
  		background-color: transparent;
- 		color: #fff;
+ 		color: $color-black;
+ 	}
+ 	button.back-button {
+ 		color: $color-black;
  	}
 
  	/*content background to transparent*/

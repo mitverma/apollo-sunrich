@@ -29,13 +29,17 @@ import { Apollo } from 'apollo-angular';
  			query {
  				orders(first: 100){
  					edges {
- 						node {
+ 						node { 							
  							lines {
  								id productName quantity thumbnail {
  									url alt
  								}  
  							}
- 							id created status trackingClientId 
+ 							id created status trackingClientId subtotal {
+ 								gross {
+ 									amount localized
+ 								}
+ 							}
  						}
  					}
  				}
