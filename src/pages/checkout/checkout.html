@@ -14,14 +14,68 @@
 
 
 <ion-content padding>
+	<div class="address-container">
+		<div class="box-item">
+			Address Name
+		</div>
+	</div>
 	<div class="checkout-container" *ngIf="!thankyouSection">
 		<div class="box-item">
 			<h3>Shipping Address</h3>
-			<form #shippingForm="ngForm" >
+			<!-- <form #shippingForm="ngForm" >
 				<input type="text" [(ngModel)]="shippingDetail.firstName" name="firstName" placeholder="firstName" required>
 				<input type="text" [(ngModel)]="shippingDetail.lastName" name="lastName" placeholder="lastName" required>
 				<input type="text" [(ngModel)]="shippingDetail.companyName" name="companyName" placeholder="companyName" required>
 				<input type="text" [(ngModel)]="shippingDetail.streetAddress1" name="streetAddress1" placeholder="streetAddress1" required>
+				<input type="text" [(ngModel)]="shippingDetail.streetAddress2" name="streetAddress2" placeholder="streetAddress2" required>
+				<input type="tel" [(ngModel)]="shippingDetail.postalCode" name="postalCode" placeholder="postalCode" required>
+				<input type="text" [(ngModel)]="shippingDetail.city" name="city" placeholder="city" required>
+				<input type="text" [(ngModel)]="shippingDetail.cityArea" name="cityArea" placeholder="cityArea" required>
+				<input type="text" [(ngModel)]="shippingDetail.country" name="country" placeholder="Country" required> 
+				<input type="text" [(ngModel)]="shippingDetail.countryArea" name="countryArea" placeholder="countryArea" required> 
+				<input type="text" [(ngModel)]="shippingDetail.phone" name="phone" placeholder="phone" required> 
+			</form> -->
+			<form #shippingForm="ngForm" >
+				<ion-list>
+					<ion-item>
+						<ion-label floating>First Name *</ion-label>
+						<ion-input type="text" [(ngModel)]="shippingDetail.firstName" name="firstName"></ion-input>
+					</ion-item>
+					<ion-item>
+						<ion-label floating>Last Name *</ion-label>
+						<ion-input type="text" [(ngModel)]="shippingDetail.lastName" name="lastName"></ion-input>
+					</ion-item>
+					<ion-item>
+						<ion-label floating>Company Or Organization</ion-label>
+						<ion-input type="text" [(ngModel)]="shippingDetail.companyName" name="companyName"></ion-input>
+					</ion-item>
+					<ion-item>
+						<ion-label floating>Flat / Bldg </ion-label>
+						<ion-input type="text" [(ngModel)]="shippingDetail.streetAddress1" name="streetAddress1"></ion-input>
+					</ion-item>
+					<ion-item>
+						<ion-label floating>Address</ion-label>
+						<ion-input type="text" [(ngModel)]="shippingDetail.streetAddress2" name="streetAddress2"></ion-input>
+					</ion-item>
+					<ion-item>
+						<ion-label floating>Pincode *</ion-label>
+						<ion-input type="tel" [(ngModel)]="shippingDetail.postalCode" name="postalCode"></ion-input>
+					</ion-item>
+					<ion-item>
+						<ion-label floating>City *</ion-label>
+						<ion-input type="text" [(ngModel)]="shippingDetail.city" name="city"></ion-input>
+					</ion-item>
+					<ion-item>
+						<ion-label floating>Country *</ion-label>
+						<ion-select [(ngModel)]="shippingDetail.country" name="country">
+							<ion-option *ngFor="let list of countryList" value="{{list.code}}">{{list.country}}</ion-option>
+						</ion-select>
+					</ion-item>
+					<ion-item>
+						<ion-label floating>Phone *</ion-label>
+						<ion-input type="number" [(ngModel)]="shippingDetail.phone" name="city"></ion-input>
+					</ion-item>
+				</ion-list>
 				<input type="text" [(ngModel)]="shippingDetail.streetAddress2" name="streetAddress2" placeholder="streetAddress2" required>
 				<input type="tel" [(ngModel)]="shippingDetail.postalCode" name="postalCode" placeholder="postalCode" required>
 				<input type="text" [(ngModel)]="shippingDetail.city" name="city" placeholder="city" required>
