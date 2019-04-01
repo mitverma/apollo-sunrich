@@ -87,3 +87,22 @@ export class MyApp {
   }
 }
 
+
+
+// things to change
+
+// 1) Checkout design floating design 
+// 2) Areas should be floating label and input 
+// 3) things which area required for checkout firstname, lastname, street Address1, city, pincodem country and state
+// 4) synching of cart order from web to mobile app (will talk to Ashish bro)
+// 5) Images should be changes from server and set with out background , Sliders needed for home sliders and product detail pages 
+// 6) Splash Screen 2732*2732 and Icon image is required 1024 * 1024
+// 7) On App load Get gif images with
+// 8) Profile Update mutation
+// 9) Address save in profile
+// 10) Shipping free or charged
+// 11) Vocuher 
+// 12) Add to Cart Changes to  go tp cart and remove buy now
+// 13) before checkout apply coupon functionalty on cart page
+
+// things to change end

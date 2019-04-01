@@ -25,7 +25,7 @@
 					</ion-col>
 					<ion-col col-10>
 						<h3 class="order-name">{{list.node.lines[0].productName}}</h3>
-						<span class="total-cost">₹ {{list.node.subtotal.gross.amount}}</span>
+						<span class="total-cost">₹ {{list.node.lines[0].unitPrice.gross.amount*list.node.lines[0].quantity}}</span>
 					</ion-col>
 				</ion-row>
 			</ion-grid>

@@ -1,19 +1,56 @@
 page-login {
-	input {
-		width: 100%;
-		padding: 8px 12px;
-		border: 1px solid $color-brown;
-		border-radius: 20px;
-		margin-bottom: 20px;
-		background-color: transparent;
-		box-shadow: 1px 2px 3px #c7c7c7;
+	// input {
+	// 	width: 100%;
+	// 	padding: 8px 12px;
+	// 	border: 1px solid $color-brown;
+	// 	border-radius: 20px;
+	// 	margin-bottom: 20px;
+	// 	background-color: transparent;
+	// 	box-shadow: 1px 2px 3px #c7c7c7;
+	// }
+
+	.scroll-content {
+		background-color: #fff;
+	}
+
+	form {
+		.list-md {
+			.item-md {
+				&.item-input-has-focus {
+					.label-md[floating] {
+						color: #999 !important;
+					}
+					&:last-child {
+						border-bottom-color: #dedede !important;
+						box-shadow: none !important;
+					}
+					.item-inner {
+						border-bottom-color: #dedede !important;
+						box-shadow: none !important;
+					}
+				}
+				&.item-input-has-value {
+					.item-inner {
+						border-bottom-color: #dedede !important;
+						box-shadow: none !important;
+					}
+				}
+				.item-inner {
+					padding: 0;
+				}
+			}
+		}
+
+		.button-holder {
+			margin: 30px 0 0;
+		}
 	}
 
 	.logo-section {
 		margin: 30px auto;
 		text-align: center;
 		img {
-			max-width: 250px;
+			max-width: 150px;
 		}
 	}
 

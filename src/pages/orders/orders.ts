@@ -33,13 +33,14 @@ import { Apollo } from 'apollo-angular';
  							lines {
  								id productName quantity thumbnail {
  									url alt
- 								}  
+ 								} 
+ 								unitPrice {
+ 									gross {
+ 										amount
+ 									}
+ 								} 
  							}
- 							id created status trackingClientId subtotal {
- 								gross {
- 									amount localized
- 								}
- 							}
+ 							id created status trackingClientId 
  						}
  					}
  				}

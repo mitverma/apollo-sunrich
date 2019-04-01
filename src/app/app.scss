@@ -47,10 +47,12 @@
  .btn-yellow {
  	padding: 12px 40px 10px;
  	height: 40px;
+ 	border-radius: 6px;
  	background-color: $color-brown;
  	color: $color-black;
  	font-weight: 700;
  	letter-spacing: 1px;
+ 	text-transform: uppercase;
  	&:hover:not(.disable-hover) {
  		background-color: $color-brown;
  		color: $color-black;
