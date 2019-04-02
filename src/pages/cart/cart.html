@@ -14,6 +14,14 @@
 
 
 <ion-content padding>
+	<!-- cart empty  -->
+	<div class="empty-cart" *ngIf="cartList && cartList.length == 0">
+		<h2>Cart is empty</h2>
+		<p>Looks like you have no items in your shoppping cart</p>
+		<p>Click on button to continue shopping</p>
+		<button class="btn btn-yellow btn-full">Continue Shopping</button>
+	</div>
+	<!-- cart empty end-->
 	<ion-grid class="cart-list" *ngFor="let cart of cartList">
 		<ion-row>
 			<ion-col col-4>

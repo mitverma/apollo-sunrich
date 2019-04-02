@@ -49,7 +49,7 @@ export class MyApp {
         "openPage": HomePage
       },{
         "title": "Products",
-        "icon": "fa-home",
+        "icon": "fa-dolly",
         "openPage": ProductsPage
       },{
         "title": "Orders",

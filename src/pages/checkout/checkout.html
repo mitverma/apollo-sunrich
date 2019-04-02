@@ -15,8 +15,15 @@
 
 <ion-content padding>
 	<div class="address-container">
-		<div class="box-item">
-			Address Name
+		<div class="box-item" *ngFor="let list of addressList">
+			<div class="address-holder">
+				<h3>{{list.firstName}} {{list.lastName}}</h3>
+				<span>{{list.companyName}}</span>
+				<span>{{list.streetAddress1}}</span>
+				<span>{{list.streetAddress2}}</span>
+				<span>{{list.city}} {{list.cityArea}} {{list.postalCode}}</span>
+				<span>{{list.countryArea}} {{list.country.country}}</span>
+			</div>
 		</div>
 	</div>
 	<div class="checkout-container" *ngIf="!thankyouSection">
@@ -76,13 +83,8 @@
 						<ion-input type="number" [(ngModel)]="shippingDetail.phone" name="city"></ion-input>
 					</ion-item>
 				</ion-list>
-				<input type="text" [(ngModel)]="shippingDetail.streetAddress2" name="streetAddress2" placeholder="streetAddress2" required>
-				<input type="tel" [(ngModel)]="shippingDetail.postalCode" name="postalCode" placeholder="postalCode" required>
-				<input type="text" [(ngModel)]="shippingDetail.city" name="city" placeholder="city" required>
 				<input type="text" [(ngModel)]="shippingDetail.cityArea" name="cityArea" placeholder="cityArea" required>
-				<input type="text" [(ngModel)]="shippingDetail.country" name="country" placeholder="Country" required> 
-				<input type="text" [(ngModel)]="shippingDetail.countryArea" name="countryArea" placeholder="countryArea" required> 
-				<input type="text" [(ngModel)]="shippingDetail.phone" name="phone" placeholder="phone" required> 
+				<input type="text" [(ngModel)]="shippingDetail.countryArea" name="countryArea" placeholder="countryArea" required>  
 			</form>
 		</div>
 
