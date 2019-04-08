@@ -40,8 +40,8 @@ import { HomePage } from '../home/home';
  		this.navCtrl.push(ProductDetailPage, node);
  	}
 
- 	openPage(page){
- 		this.navCtrl.setRoot(page);
+ 	openHomePage(){
+ 		this.navCtrl.setRoot(HomePage);
  	}
 
  }

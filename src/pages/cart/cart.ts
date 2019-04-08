@@ -89,8 +89,8 @@ import { HomePage } from '../home/home';
  	}
  	// get cart sub total end
 
- 	openPage(page){
- 		this.navCtrl.setRoot(page);
+ 	openHomePage(){
+ 		this.navCtrl.setRoot(HomePage);
  	}
 
  }
