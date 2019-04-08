@@ -2,7 +2,10 @@
 <ion-menu [content]="content">
 	<ion-header>
 		<ion-toolbar>
-			<ion-title>Sunrich Rice</ion-title>
+			<ion-title>
+				<span class="welcome-heading" *ngIf="authUser && authUser.firstName !='' || authUser.email !='' ">Welcome,</span>
+				<span class="user-name">{{authUser && authUser.firstName !='' ? authUser.firstName: authUser.email ? authUser.email : 'Sunrich Rice'}}</span>
+			</ion-title>
 		</ion-toolbar>
 	</ion-header>
 

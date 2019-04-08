@@ -20,8 +20,10 @@ import { CheckoutPage } from '../checkout/checkout';
  export class CartPage {
  	cartList: any = [];
  	subTotal: number;
+ 	shippingCost: number = 0;
  	constructor(public navCtrl: NavController, public navParams: NavParams, public cartDetail: CartDetail, public checkoutEntity : CheckOutEntity,) {
  		this.cartList = this.cartDetail.cartArray;
+ 		// this.shippingCost = 30;
  		this.getCartSubTotal();
  	}
 
@@ -38,7 +40,7 @@ import { CheckoutPage } from '../checkout/checkout';
  			}
  			this.checkoutEntity.checkOutList.push(lineObj);
  		}
- 		this.checkoutEntity.checkoutTotal = this.subTotal;
+ 		this.checkoutEntity.checkoutTotal = this.subTotal + this.shippingCost;
  		console.log(this.checkoutEntity.checkOutList, 'checkoutLines');
 
  		Object.assign(this.checkoutEntity.checkOutList, this.checkoutEntity.checkOutList);

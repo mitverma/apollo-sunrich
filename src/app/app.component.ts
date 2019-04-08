@@ -8,6 +8,7 @@ import { OrdersPage } from '../pages/orders/orders';
 import { ProductsPage } from '../pages/products/products'; 
 import { WishlistPage } from '../pages/wishlist/wishlist'; 
 import { HomePage } from '../pages/home/home'; 
+import { ProfilePage } from '../pages/profile/profile'; 
 import { CartPage } from '../pages/cart/cart'; 
 import { AuthUser } from '../providers/entities/entities';
 import { DevicestorageProvider } from '../providers/devicestorage/devicestorage';
@@ -47,6 +48,10 @@ export class MyApp {
         "title": "Home",
         "icon": "fa-home",
         "openPage": HomePage
+      },{
+        "title": "Profile",
+        "icon": "fa-user",
+        "openPage": ProfilePage
       },{
         "title": "Products",
         "icon": "fa-dolly",

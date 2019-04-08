@@ -41,7 +41,7 @@
  $color-darkgrey: gray;
  /*colors end*/
 
-	// #5a450d brown wala
+ // #5a450d brown wala
 
  /*classes*/
  .btn-yellow {
@@ -84,6 +84,15 @@
  	.toolbar-background-md {
  		background-color: $color-brown;
  	}
+
+ 	.ion-md-menu:before {
+ 		background-image: url('../assets/images/hamburger.svg');
+ 		content: "" !important;
+ 		width: 30px;
+ 		height: 20px;
+ 		background-repeat: no-repeat;
+ 		background-position: 5px 0;
+ 	}
  	/*header end	*/
  	/*header set to background transparent end*/
 
@@ -121,6 +130,14 @@
  		background-color: transparent;
  	}
  	/*content background to transparent end*/
+
+ 	.welcome-heading {
+ 		display: block;
+ 		font-size: 14px;
+ 		+ .user-name {
+ 			display: block;
+ 		}
+ 	}
 
  	// menu content
  	.menu-content {

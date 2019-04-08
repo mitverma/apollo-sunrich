@@ -16,6 +16,7 @@
 <ion-content padding>
 	<!-- cart empty  -->
 	<div class="empty-cart" *ngIf="cartList && cartList.length == 0">
+		<i class="fas fa-shopping-cart fa-5x"></i>
 		<h2>Cart is empty</h2>
 		<p>Looks like you have no items in your shoppping cart</p>
 		<p>Click on button to continue shopping</p>
@@ -49,17 +50,31 @@
 			</ion-col>
 		</ion-row>
 	</ion-grid>
-	<div class="sub-total" *ngIf="cartList.length">
-		<div class="clearfix">
-			<div class="f-left">
-				<span class="total-heading">SubTotal</span>
+	<!-- shipping cost and subtotal -->
+	<div class="" *ngIf="cartList.length">
+		<div class="shipping-cost sub-total">
+			<div class="clearfix">
+				<div class="f-left">
+					<span class="total-heading">Shipping Charges</span>
+				</div>
+				<div class="f-right">
+					<span class="total-cost">₹ {{shippingCost}}</span>
+				</div>
 			</div>
-			<div class="f-right">
-				<span class="total-cost">₹ {{subTotal}}</span>
+		</div>
+		<div class="sub-total">
+			<div class="clearfix">
+				<div class="f-left">
+					<span class="total-heading">SubTotal</span>
+				</div>
+				<div class="f-right">
+					<span class="total-cost">₹ {{subTotal + shippingCost}}</span>
 
+				</div>
 			</div>
 		</div>
 	</div>
+	<!-- shipping cost and subtotal end-->
 	<div class="text-center">
 		<button class="btn-yellow btn-full" *ngIf="cartList.length" (click)="checkout()">Checkout</button>
 	</div>

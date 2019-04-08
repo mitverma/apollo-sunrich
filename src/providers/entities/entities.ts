@@ -11,13 +11,17 @@ import { Injectable } from '@angular/core';
   	token: string;
   	userId: string;
   	email: string;
-  	auth_token: string;
-  	constructor() {
-  		this.token = '';
-  		this.userId = '';
-  		this.email = '';
-  		this.auth_token = 'APP_USER';
-  	}
+    firstName: string;
+    lastName: string;
+    auth_token: string;
+    constructor() {
+      this.token = '';
+      this.userId = '';
+      this.email = '';
+      this.firstName = '';
+      this.lastName = '';
+      this.auth_token = 'APP_USER';
+    }
   }
 
   @Injectable()

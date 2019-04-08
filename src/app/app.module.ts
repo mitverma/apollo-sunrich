@@ -6,6 +6,7 @@ import { MyApp } from './app.component';
 import { AboutPage } from '../pages/about/about';
 import { ContactPage } from '../pages/contact/contact';
 import { HomePage } from '../pages/home/home';
+import { ProfilePage } from '../pages/profile/profile'; 
 import { TabsPage } from '../pages/tabs/tabs';
 import { LoginPage } from '../pages/login/login'; 
 import { ProductDetailPage } from '../pages/product-detail/product-detail'; 
@@ -38,6 +39,7 @@ import { CartDetail,CheckOutEntity, WishListEntity } from '../providers/entities
   AboutPage,
   ContactPage,
   HomePage,
+  ProfilePage,
   TabsPage,
   LoginPage,
   ProductDetailPage,
@@ -62,6 +64,7 @@ import { CartDetail,CheckOutEntity, WishListEntity } from '../providers/entities
   AboutPage,
   ContactPage,
   HomePage,
+  ProfilePage,
   TabsPage,
   LoginPage,
   ProductDetailPage,

@@ -42,4 +42,12 @@ page-wishlist {
 			}
 		}
 	}
+	.wishlist-empty {
+		margin: 50px 0px 0;
+		text-align: center;
+		button {
+			margin-top: 20px;
+		}
+		img { max-height: 85px; }
+	}
 }
