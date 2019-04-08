@@ -45,7 +45,7 @@
 		<!-- address details -->
 		<div class="address-list-container card-view" *ngIf="userDetails && userDetails.addresses.length">
 			<h3 class="heading">Address</h3>
-			<div class="address-holder" *ngFor="let list of userDetails.addresses" (click)="selectAddress(list);">
+			<div class="address-holder" *ngFor="let list of userDetails.addresses">
 				<h3>{{list.firstName}} {{list.lastName}}</h3>
 				<span>{{list.companyName}} ,</span>
 				<span>{{list.streetAddress1}} ,</span>

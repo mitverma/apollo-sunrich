@@ -1,7 +1,8 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, Events } from 'ionic-angular';
 import { WishListEntity } from '../../providers/entities/entities'
-import { ProductDetailPage } from '../product-detail/product-detail'
+import { ProductDetailPage } from '../product-detail/product-detail';
+import { HomePage } from '../home/home';
 
 /**
  * Generated class for the WishlistPage page.
@@ -37,6 +38,10 @@ import { ProductDetailPage } from '../product-detail/product-detail'
  			node: productInfo
  		};
  		this.navCtrl.push(ProductDetailPage, node);
+ 	}
+
+ 	openPage(page){
+ 		this.navCtrl.setRoot(page);
  	}
 
  }

@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { CartDetail,CheckOutEntity } from '../../providers/entities/entities';
 import { CheckoutPage } from '../checkout/checkout';
+import { HomePage } from '../home/home';
 
 
 
@@ -87,5 +88,9 @@ import { CheckoutPage } from '../checkout/checkout';
  		}
  	}
  	// get cart sub total end
+
+ 	openPage(page){
+ 		this.navCtrl.setRoot(page);
+ 	}
 
  }
