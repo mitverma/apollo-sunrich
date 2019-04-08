@@ -49,6 +49,11 @@ page-checkout {
 									padding: 0;
 								}
 							}
+							.item-input.ng-valid.item-input-has-value:not(.input-has-focus):not(.item-input-has-focus):last-child,
+							.item-input.ng-valid.input-has-value:not(.input-has-focus):not(.item-input-has-focus):last-child {
+								border-bottom-color: #dedede !important;
+								box-shadow: none !important;
+							}
 						}
 					}
 				}
