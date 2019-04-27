@@ -2,6 +2,7 @@ import { Component, ViewChild, } from '@angular/core';
 import { IonicPage, NavController, NavParams, Slides, Events } from 'ionic-angular';
 import { CartDetail } from '../../providers/entities/entities';
 import { CartPage } from '../cart/cart';
+import { DevicestorageProvider } from '../../providers/devicestorage/devicestorage';
 /**
  * Generated class for the ProductDetailPage page.
  *
@@ -20,16 +21,17 @@ import { CartPage } from '../cart/cart';
  	quantityCount: any = 0;
 
  	constructor(public navCtrl: NavController,
- 		public navParams: NavParams, 
+ 		public navParams: NavParams,
  		public cartDetail: CartDetail,
- 		public events: Events) {
+     public events: Events,
+     public deviceStorage: DevicestorageProvider) {
  		this.productDetailInfo = {
  			images: [],
  			name: '',
  			description: '',
  			price: '',
  		}
- 		
+
  	}
 
  	ionViewDidLoad() {
@@ -50,7 +52,7 @@ import { CartPage } from '../cart/cart';
  		}else{
  			this.quantityCount = 0;
  		}
- 		// set quantity count end 
+ 		// set quantity count end
  	}
 
  	addToCart(product, type){
@@ -69,14 +71,17 @@ import { CartPage } from '../cart/cart';
  			if (this.cartDetail && this.cartDetail.cartArray && this.cartDetail.cartArray.length) {
  				this.cartDetail.cartArray.forEach((list, index)=>{
  					if (list.productId == product.variants[0].id) {
- 						// matches all 
- 						
+ 						// matches all
+
 
  						// add functionality
  						if (type == 'add') {
  							list.productQuantity = ++list.productQuantity;
  							list.productTotalPrice = list.productPrice * list.productQuantity;
- 							++this.quantityCount;
+               ++this.quantityCount;
+              //  cart
+              this.deviceStorage.updateCart(this.cartDetail.cartArray);
+              //  cart end
  						}
  						// add functionality end
 
@@ -89,7 +94,10 @@ import { CartPage } from '../cart/cart';
  								--list.productQuantity;
  								list.productTotalPrice = list.productPrice * list.productQuantity;
  								--this.quantityCount;
- 							}
+               }
+               //  cart
+              this.deviceStorage.updateCart(this.cartDetail.cartArray);
+              //  cart end
  						}
  						// remove functionality end
  						productExist = false;
@@ -107,7 +115,11 @@ import { CartPage } from '../cart/cart';
 
  				// cart events publish
  				this.events.publish('cartDetail', this.cartDetail);
- 				// cart events publish end
+         // cart events publish end
+
+         //  cart
+         this.deviceStorage.updateCart(this.cartDetail.cartArray);
+         //  cart end
 
  			}
  		}

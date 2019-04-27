@@ -18,9 +18,9 @@ import { Storage } from '@ionic/storage';
   	setValue(key, value) : Promise<any>{
   		return this.storage.ready().then(()=>{
   			return this.storage.set(key, value).then((res)=>{
-  				return res; 
+  				return res;
   			}).catch(()=>{
-  				return null; 
+  				return null;
   			})
   		})
   	}
@@ -39,6 +39,22 @@ import { Storage } from '@ionic/storage';
 
   	removeValue(key): Promise<any>{
   		return this.storage.remove(key);
-  	}
+    }
+
+    updateCart(value): Promise<any>{
+      return this.storage.set('cart', value).then((res)=>{
+        return res;
+      }).catch(()=>{
+        return null;
+      })
+    }
+
+    getCartData(): Promise<any>{
+      return this.storage.get('cart').then((res)=>{
+        return res;
+      }).catch(()=>{
+        return null;
+      })
+    }
 
   }

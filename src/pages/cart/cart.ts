@@ -3,6 +3,7 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { CartDetail,CheckOutEntity } from '../../providers/entities/entities';
 import { CheckoutPage } from '../checkout/checkout';
 import { HomePage } from '../home/home';
+import { DevicestorageProvider } from '../../providers/devicestorage/devicestorage';
 
 
 
@@ -22,7 +23,11 @@ import { HomePage } from '../home/home';
  	cartList: any = [];
  	subTotal: number;
  	shippingCost: number = 0;
- 	constructor(public navCtrl: NavController, public navParams: NavParams, public cartDetail: CartDetail, public checkoutEntity : CheckOutEntity,) {
+   constructor(public navCtrl: NavController,
+    public navParams: NavParams,
+    public cartDetail: CartDetail,
+    public checkoutEntity : CheckOutEntity,
+    public deviceStorage: DevicestorageProvider) {
  		this.cartList = this.cartDetail.cartArray;
  		// this.shippingCost = 30;
  		this.getCartSubTotal();
@@ -52,12 +57,12 @@ import { HomePage } from '../home/home';
  		if (product) {
  			this.cartDetail.cartArray.forEach((list, index)=>{
  				if (list.productId == product.productId) {
- 					
+
  					// add functionality
  					if (type == 'add') {
  						list.productQuantity = ++list.productQuantity;
  						list.productTotalPrice = list.productPrice * list.productQuantity;
- 						this.getCartSubTotal();
+             this.getCartSubTotal();
  					}
  					// add functionality end
 
@@ -70,7 +75,7 @@ import { HomePage } from '../home/home';
  							list.productTotalPrice = list.productPrice * list.productQuantity;
  						}
 
- 						this.getCartSubTotal();
+             this.getCartSubTotal();
  					}
  					// remove functionality end
  				}
@@ -78,14 +83,15 @@ import { HomePage } from '../home/home';
  		}
  	}
 
- 	// get cart sub total 
+ 	// get cart sub total
  	getCartSubTotal(){
  		if (this.cartList.length) {
  			this.subTotal =  this.cartList.map(res=> res.productTotalPrice).reduce((prev,next)=> prev + next);
  			console.log(this.subTotal, 'subtotal');
  		}else{
  			this.subTotal = 0;
- 		}
+     }
+     this.deviceStorage.updateCart(this.cartDetail.cartArray);
  	}
  	// get cart sub total end
 
