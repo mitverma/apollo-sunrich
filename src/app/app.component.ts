@@ -37,6 +37,7 @@ export class MyApp {
           console.log(data, 'data value');
           Object.assign(this.authUser, data);
           this.nav.setRoot(HomePage);
+          // this.nav.
           // this.nav.setRoot(OrdersPage);
         }else {
 
@@ -44,7 +45,7 @@ export class MyApp {
       });
       // device storage set value and get value end
 
-      // get cart value if present
+      // get cart value if present 
       this.deviceStorage.getCartData().then((data)=>{
         if(data){
           this.cartDetail.cartArray = data;
@@ -91,6 +92,7 @@ export class MyApp {
       // remove cart value
       this.deviceStorage.removeValue('cart');
       Object.assign(this.authUser, new AuthUser());
+      Object.assign(this.cartDetail, new CartDetail());
       this.menu.close();
       this.nav.setRoot(LoginPage);
     });
@@ -102,6 +104,18 @@ export class MyApp {
     }else {
       this.nav.push(pageInfo.openPage);
     }
+  }
+
+  ionViewWillEnter(){
+    this.deviceStorage.getValue(this.authUser.auth_token).then((data)=>{
+      if (data) {
+        console.log(data, 'data value');
+        Object.assign(this.authUser, data);
+        this.nav.setRoot(HomePage);
+      }else {
+        this.nav.setRoot(LoginPage);
+      }
+    });
   }
 }
 

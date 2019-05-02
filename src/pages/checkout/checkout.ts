@@ -1,8 +1,9 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import gql from 'graphql-tag';
-import { CheckOutEntity , AuthUser } from '../../providers/entities/entities';
+import { CheckOutEntity , AuthUser, CartDetail } from '../../providers/entities/entities';
 import { Apollo } from 'apollo-angular';
+import { HomePage } from '../home/home';
 /**
  * Generated class for the CheckoutPage page.
  *
@@ -28,7 +29,8 @@ import { Apollo } from 'apollo-angular';
  		public navParams: NavParams, 
  		public apollo: Apollo, 
  		public checkoutEntity: CheckOutEntity,
- 		public authUser: AuthUser) {
+		 public authUser: AuthUser,
+	public cartDetail: CartDetail) {
 
  		console.log(this.authUser, 'auth user');
  		this.shippingDetail = {
@@ -41,7 +43,8 @@ import { Apollo } from 'apollo-angular';
  			city: '',
  			cityArea: '',
  			country: '',
- 			countryArea: ''
+			 countryArea: '',
+			 phone: ''
  		}
 
  		this.selectedAddress = {
@@ -55,7 +58,8 @@ import { Apollo } from 'apollo-angular';
  			city: '',
  			cityArea: '',
  			country: '',
- 			countryArea: ''
+			 countryArea: '',
+			 phone: ''
  		}
  	}
 
@@ -236,7 +240,9 @@ import { Apollo } from 'apollo-angular';
  				}).subscribe((data: any)=>{
  					console.log(data, 'data checkout completed');
  					if (data.data.checkoutComplete.order.id) {
- 						this.thankyouSection = true;
+						 this.thankyouSection = true;
+						 this.viewAddressForm = false
+						 this.cartDetail.cartArray = [];
  					}
  				})
  			}
@@ -283,6 +289,31 @@ import { Apollo } from 'apollo-angular';
  				}
  				console.log(address, 'address', this.selectedAddress, 'selected address');
  			}
- 			// select address for payment end
+			 // select address for payment end
+			 
+			//  save address form then place order
+			placeFromSaveAddress(formDetails){
+				if(formDetails.valid){
+					this.selectedAddress.id = this.shippingDetail.id,
+ 					this.selectedAddress.firstName = this.shippingDetail.firstName;
+ 					this.selectedAddress.lastName= this.shippingDetail.lastName;
+ 					this.selectedAddress.companyName= this.shippingDetail.companyName;
+ 					this.selectedAddress.streetAddress1= this.shippingDetail.streetAddress1;
+ 					this.selectedAddress.streetAddress2= this.shippingDetail.streetAddress2;
+ 					this.selectedAddress.city = this.shippingDetail.city;
+ 					this.selectedAddress.cityArea= this.shippingDetail.cityArea;
+ 					this.selectedAddress.postalCode= this.shippingDetail.postalCode;
+ 					this.selectedAddress.countryArea= this.shippingDetail.countryArea;
+ 					this.selectedAddress.phone= "+91"+this.shippingDetail.phone;
+ 					this.selectedAddress.country = this.shippingDetail.country.code;
+					this.placeOrder();
+				}
+			}
+			//  save address form then place order
+
+			// continue shopping
+			continueShopping(){
+				this.navCtrl.setRoot(HomePage);
+			}
 
  		}
