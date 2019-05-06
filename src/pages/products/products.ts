@@ -53,7 +53,8 @@ import { AuthUser,WishListEntity } from '../../providers/entities/entities';
  		let variableNew = null;
  		this.apollo.watchQuery<any>({ query: productQuery, variables: variableNew }).valueChanges.subscribe(data=>{
  			if (data) {
- 				this.productList =  data.data.products.edges;
+				 this.productList =  data.data.products.edges;
+				 console.log(this.productList, 'product list', data, 'data');
 
  				this.productList.forEach(list=>{
  					list.node.itemWishlisted = false;

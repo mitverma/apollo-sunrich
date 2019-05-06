@@ -29,7 +29,7 @@ import { AuthUser } from '../../providers/entities/entities';
 
  	ionViewDidLoad() {
  		console.log('ionViewDidLoad ProfilePage');
- 		this.getUserDetails();
+ 		// this.getUserDetails();
  	}
 
 
@@ -56,6 +56,11 @@ import { AuthUser } from '../../providers/entities/entities';
  					console.log(this.personalDetail, 'personal details');
  				}
  			})
- 		}
+		 }
+		 
+		 ionViewDidEnter(){
+				console.log('emter view');
+				this.getUserDetails();
+		 }
 
  	}

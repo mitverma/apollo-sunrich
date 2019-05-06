@@ -111,7 +111,7 @@ import { DevicestorageProvider } from '../../providers/devicestorage/devicestora
  			if (productExist) {
  				this.cartDetail.cartArray.push(productSetObj);
  				this.quantityCount = 1;
- 				console.log(this.cartDetail, 'cart');
+				 console.log(this.cartDetail, 'cart');
 
  				// cart events publish
  				this.events.publish('cartDetail', this.cartDetail);

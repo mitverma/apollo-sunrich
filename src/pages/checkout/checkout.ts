@@ -4,6 +4,7 @@ import gql from 'graphql-tag';
 import { CheckOutEntity , AuthUser, CartDetail } from '../../providers/entities/entities';
 import { Apollo } from 'apollo-angular';
 import { HomePage } from '../home/home';
+import { DevicestorageProvider } from '../../providers/devicestorage/devicestorage';
 /**
  * Generated class for the CheckoutPage page.
  *
@@ -30,7 +31,8 @@ import { HomePage } from '../home/home';
  		public apollo: Apollo, 
  		public checkoutEntity: CheckOutEntity,
 		 public authUser: AuthUser,
-	public cartDetail: CartDetail) {
+		public cartDetail: CartDetail,
+		public deviceStorage: DevicestorageProvider) {
 
  		console.log(this.authUser, 'auth user');
  		this.shippingDetail = {
@@ -243,6 +245,7 @@ import { HomePage } from '../home/home';
 						 this.thankyouSection = true;
 						 this.viewAddressForm = false
 						 this.cartDetail.cartArray = [];
+						 this.deviceStorage.removeValue('cart');
  					}
  				})
  			}
@@ -314,6 +317,11 @@ import { HomePage } from '../home/home';
 			// continue shopping
 			continueShopping(){
 				this.navCtrl.setRoot(HomePage);
+			}
+			ionViewDidLeave(){
+				if(this.thankyouSection){
+					this.navCtrl.setRoot(HomePage);
+				}
 			}
 
  		}

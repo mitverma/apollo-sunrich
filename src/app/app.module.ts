@@ -102,7 +102,8 @@ export class AppModule {
 
       apollo.create({
         link: httpLink.create({
-          uri: "http://www.sunrichrice.com/graphql/",
+          // uri: "http://www.sunrichrice.com/graphql/",
+          uri: "http://139.59.17.138/graphql/",
           withCredentials: true,
           // method: 'GET'    
           headers: new HttpHeaders({
