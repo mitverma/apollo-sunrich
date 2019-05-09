@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, ToastController  } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, ToastController, MenuController  } from 'ionic-angular';
 import gql from 'graphql-tag';
 import { Apollo } from 'apollo-angular';
 import { AuthUser } from '../../providers/entities/entities';
@@ -36,7 +36,13 @@ import { HomePage } from '../home/home';
  	userRegisterDetail: any = {};
  	userLoginDetail: any = {};
  	loginMutation: any;
- 	constructor(public navCtrl: NavController, public navParams: NavParams, public apollo: Apollo, public authUser: AuthUser, public deviceStorage: DevicestorageProvider, public toastCtrl: ToastController) {
+   constructor(public navCtrl: NavController,
+    public navParams: NavParams,
+    public apollo: Apollo,
+    public authUser: AuthUser,
+    public deviceStorage: DevicestorageProvider,
+    public toastCtrl: ToastController,
+    public menu: MenuController) {
  		this.userRegisterDetail = {
  			email: '',
  			password: ''
@@ -63,7 +69,7 @@ import { HomePage } from '../home/home';
  	login(formDetails){
  		console.log(formDetails, 'formDetais');
  		if (formDetails.valid) {
- 			this.apollo.mutate({mutation:  gql` 		
+ 			this.apollo.mutate({mutation:  gql`
  				mutation tokenCreate($email: String!, $password: String!){
  					tokenCreate(email: $email, password: $password){
  						token, errors{ message field }
@@ -80,7 +86,7 @@ import { HomePage } from '../home/home';
  						this.authUser.firstName = data.data.tokenCreate.user.firstName;
  						this.authUser.lastName = data.data.tokenCreate.user.lastName;
  						this.authUser.userId = data.data.tokenCreate.user.id;
-
+            this.menu.swipeEnable(true);
  						localStorage.setItem('token', this.authUser.token);
 
  						this.deviceStorage.setValue(this.authUser.auth_token, this.authUser);
@@ -138,7 +144,7 @@ import { HomePage } from '../home/home';
  			}
  		}
 
- 		// toaster 
+ 		// toaster
  		toaster(message){
  			const createToast = this.toastCtrl.create({
  				message: message,

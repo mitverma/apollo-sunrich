@@ -37,15 +37,16 @@ export class MyApp {
           console.log(data, 'data value');
           Object.assign(this.authUser, data);
           this.nav.setRoot(HomePage);
+          this.menu.swipeEnable(true);
           // this.nav.
           // this.nav.setRoot(OrdersPage);
         }else {
-
+          this.menu.swipeEnable(false);
         }
       });
       // device storage set value and get value end
 
-      // get cart value if present 
+      // get cart value if present
       this.deviceStorage.getCartData().then((data)=>{
         if(data){
           this.cartDetail.cartArray = data;
@@ -89,6 +90,7 @@ export class MyApp {
 
   logout(){
     this.deviceStorage.removeValue(this.authUser.auth_token).then(data=>{
+      this.menu.swipeEnable(false);
       // remove cart value
       this.deviceStorage.removeValue('cart');
       Object.assign(this.authUser, new AuthUser());
